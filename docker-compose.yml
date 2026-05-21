@@ -1,0 +1,8 @@
+services:
+  avinterra-nginx:
+    build: .
+    image: avinterra-tours
+    container_name: avinterra-nginx
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8084:80"
