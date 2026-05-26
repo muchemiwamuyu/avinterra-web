@@ -1,45 +1,58 @@
-export const img = (id: string, w = 1200) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+// All images served locally from /public/images/ — no external dependency
+const I = (name: string) => `/images/${name}`;
+
+// WhatsApp contact number (international format, no +)
+export const WA_NUMBER = "254712894097";
+export const WA_DISPLAY = "+254 712 894 097";
 
 export const PHOTOS = {
-  balloons: img("1500835556837-99ac94a94552"),
-  safari:   img("1516426122078-c23e76319801"),
-  fuji:     img("1493976040374-85c8e12f0c0e"),
-  diani:    img("1535448033526-c0e85c094a75"),
-  aboutA:   img("1547471080-7cc2caa01a7e"),
-  aboutB:   img("1523805009345-7448845a9e53"),
-  mara:     img("1547036967-23d11aacaee0"),
-  amboseli: img("1547471080-7cc2caa01a7e"),
-  beach:    img("1582719508461-905c673771fd"),
-  mtkenya:  img("1551632811-561732d1e306"),
-  tsavo:    img("1516426122078-c23e76319801"),
-  cultural: img("1516026672322-bc52d61a55d5"),
-  dubai:    img("1512453979798-5ea266f8880c"),
-  greece:   img("1533105079780-92b9be482077"),
-  japan:    img("1493976040374-85c8e12f0c0e"),
-  egypt:    img("1539650116574-75c0c6d73f6e"),
-  zanzibar: img("1589401692049-b5c0a4ad9d23"),
-  sa:       img("1516026672322-bc52d61a55d5"),
-  lion:     img("1546182990-dffeafbe841d"),
-  elephant: img("1547471080-7cc2caa01a7e"),
-  leopard:  img("1574870590-abc8dfc3e0ca"),
-  buffalo:  img("1551632436-cbf8dd35adfa"),
-  rhino:    img("1558618666-fcd25c85cd64"),
-  pkgGreece:    img("1533105079780-92b9be482077"),
-  pkgJapan:     img("1480796927426-f609979314bd"),
-  pkgKiambicho: img("1518002171953-a080ee817e1f"),
-  pkgSaltys:    img("1540541338287-41700207dee6"),
-  gal1: img("1518684079-3c830dcef090"),
-  gal2: img("1469474968028-56623f02e42e"),
-  gal3: img("1502786129293-79981df4e689"),
-  gal4: img("1571406761758-9a3eed5338ef"),
-  gal5: img("1488646953014-85cb44e25828"),
-  gal6: img("1469854523086-cc02fe5d8800"),
-  avA: img("1494790108377-be9c29b29330", 200),
-  avB: img("1507003211169-0a1dd7228f2d", 200),
-  avC: img("1438761681033-6461ffad8d80", 200),
-  bookingArt: img("1469854523086-cc02fe5d8800"),
+  balloons:     I("balloons.jpg"),
+  safari:       I("safari.jpg"),
+  fuji:         I("fuji.jpg"),
+  diani:        I("diani.jpg"),
+  // Hotel / lodge imagery — used in About page
+  aboutA:       I("lodge.jpg"),
+  aboutB:       I("suite.jpg"),
+  hotel1:       I("hotel-pool.jpg"),
+  hotel2:       I("hotel-dining.jpg"),
+  hotel3:       I("hotel-coastal.jpg"),
+  lodge1:       I("lodge.jpg"),
+  lodge2:       I("luxury-camp.jpg"),
+  mara:         I("mara.jpg"),
+  amboseli:     I("amboseli.jpg"),
+  beach:        I("beach.jpg"),
+  mtkenya:      I("mtkenya.jpg"),
+  tsavo:        I("safari.jpg"),
+  cultural:     I("cultural.jpg"),
+  dubai:        I("dubai.jpg"),
+  greece:       I("greece.jpg"),
+  japan:        I("fuji.jpg"),
+  egypt:        I("egypt.jpg"),
+  zanzibar:     I("zanzibar.jpg"),
+  sa:           I("cultural.jpg"),
+  lion:         I("lion.jpg"),
+  elephant:     I("amboseli.jpg"),
+  leopard:      I("leopard.jpg"),
+  buffalo:      I("buffalo.jpg"),
+  rhino:        I("rhino.jpg"),
+  pkgGreece:    I("greece.jpg"),
+  pkgJapan:     I("japan-pkg.jpg"),
+  pkgKiambicho: I("kiambicho.jpg"),
+  pkgSaltys:    I("saltys.jpg"),
+  gal1:         I("gal1.jpg"),
+  gal2:         I("gal2.jpg"),
+  gal3:         I("gal3.jpg"),
+  gal4:         I("gal4.jpg"),
+  gal5:         I("gal5.jpg"),
+  gal6:         I("gal6.jpg"),
+  avA:          I("av-a.jpg"),
+  avB:          I("av-b.jpg"),
+  avC:          I("av-c.jpg"),
+  bookingArt:   I("gal6.jpg"),
 };
+
+/** @deprecated kept for any remaining direct callers — prefer PHOTOS keys */
+export const img = (_id: string, _w = 1200) => "";
 
 export interface Destination {
   name: string;

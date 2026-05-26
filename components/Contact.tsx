@@ -1,8 +1,36 @@
-const CELLS = [
-  { label: "PHONE",     value: "+254 143 218 102",              sub: "Mon–Sat · 8am – 7pm EAT" },
-  { label: "WHATSAPP",  value: "+254 143 218 102",              sub: "24/7 — usually a few minutes" },
-  { label: "EMAIL",     value: "avinterraexpeditions@gmail.com", sub: "Replies within 24h", small: true },
-  { label: "OFFICE",    value: "Nairobi, Kenya",                sub: "Visit by appointment" },
+interface ContactCell {
+  label: string;
+  value: string;
+  sub: string;
+  href?: string;
+  small?: boolean;
+}
+
+const CELLS: ContactCell[] = [
+  {
+    label: "PHONE",
+    value: "+254 712 894 097",
+    sub: "Mon–Sat · 8am – 7pm EAT",
+    href: "tel:+254712894097",
+  },
+  {
+    label: "WHATSAPP",
+    value: "+254 712 894 097",
+    sub: "24/7 — usually a few minutes",
+    href: "https://wa.me/254712894097",
+  },
+  {
+    label: "EMAIL",
+    value: "avinterraexpeditions@gmail.com",
+    sub: "Replies within 24h",
+    href: "mailto:avinterraexpeditions@gmail.com",
+    small: true,
+  },
+  {
+    label: "OFFICE",
+    value: "Nairobi, Kenya",
+    sub: "Visit by appointment",
+  },
 ];
 
 export default function Contact() {
@@ -18,15 +46,32 @@ export default function Contact() {
           </div>
         </div>
         <div className="contact-grid reveal">
-          {CELLS.map(({ label, value, sub, small }) => (
-            <div className="contact-cell" key={label}>
-              <div className="label">{label}</div>
-              <div className="value" style={small ? { fontSize: 18 } : undefined}>
-                {value}
+          {CELLS.map(({ label, value, sub, href, small }) => {
+            const content = (
+              <>
+                <div className="label">{label}</div>
+                <div className="value" style={small ? { fontSize: 18 } : undefined}>
+                  {value}
+                </div>
+                <div className="sub">{sub}</div>
+              </>
+            );
+            return href ? (
+              <a
+                key={label}
+                className="contact-cell contact-cell-link"
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              >
+                {content}
+              </a>
+            ) : (
+              <div className="contact-cell" key={label}>
+                {content}
               </div>
-              <div className="sub">{sub}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

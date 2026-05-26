@@ -5,10 +5,21 @@ import { LOCAL, INTL, type Destination } from "@/lib/data";
 
 function DestCard({ d, tab, tall }: { d: Destination; tab: string; tall: boolean }) {
   const [type, duration] = d.meta.split(" · ");
+
+  const openWhatsApp = () => {
+    const msg = `Hi! I'm interested in the *${d.name}* package (${d.meta} · ${d.price}). Could you share more details and availability?`;
+    window.open(`https://wa.me/254712894097?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div
       className={`cat-card${tall ? " tall" : ""}`}
       style={{ backgroundImage: `url(${d.img})` }}
+      onClick={openWhatsApp}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && openWhatsApp()}
+      aria-label={`Book ${d.name} on WhatsApp`}
     >
       <div className="cat-card-price">
         <span className="from">FROM</span>

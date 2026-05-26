@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PHOTOS } from "@/lib/data";
 
 interface FormState {
@@ -23,6 +23,14 @@ export default function Booking() {
   const [form, setForm] = useState<FormState>(INITIAL);
   const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
 
+  // Auto-clear success banner so user can submit again
+  useEffect(() => {
+    if (status?.ok) {
+      const t = setTimeout(() => setStatus(null), 6000);
+      return () => clearTimeout(t);
+    }
+  }, [status]);
+
   const set = (k: keyof FormState) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -43,7 +51,7 @@ export default function Booking() {
       form.date ? `Date: ${form.date}` : null,
       form.notes ? `Notes: ${form.notes}` : null,
     ].filter(Boolean).join("\n");
-    window.open(`https://wa.me/254143218102?text=${encodeURIComponent(lines)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/254712894097?text=${encodeURIComponent(lines)}`, "_blank", "noopener,noreferrer");
     setStatus({ ok: true, msg: `Opening WhatsApp with your inquiry, ${form.name.split(" ")[0]}! We'll reply within 24 hours.` });
     setForm(INITIAL);
   };
@@ -67,7 +75,7 @@ export default function Booking() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17.5 14.4l-2.4-1.2c-.4-.2-.9-.1-1.2.2l-1 1c-1.5-.8-2.7-2-3.5-3.5l1-1c.3-.3.4-.8.2-1.2L9.4 6.3c-.3-.6-1-.8-1.5-.4-1.6 1-2.5 2.8-2.1 4.8.7 4 4 7.3 8 8 2 .4 3.8-.5 4.8-2.1.3-.5.1-1.2-.4-1.5z" />
                 </svg>
-                <span>+254 143 218 102 · WhatsApp 24/7</span>
+                <span>+254 712 894 097 · WhatsApp 24/7</span>
               </div>
             </div>
           </div>
@@ -142,7 +150,7 @@ export default function Booking() {
               />
             </div>
 
-            <button type="submit" className="booking-submit" disabled={status?.ok === true}>
+            <button type="submit" className="booking-submit">
               Send inquiry
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M1 7H13M13 7L8 2M13 7L8 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

@@ -19,13 +19,19 @@ Next.js 16 App Router, React 19, TypeScript, Tailwind CSS v4. Configured as a **
 
 ### Routing
 
-All routes are in `app/`. Each is a thin page file that imports a component or `LegalPage`:
+All routes are in `app/`. The home page assembles every section sequentially; standalone pages each focus on one section:
 
 | Route | Notes |
 |-------|-------|
-| `/` | Assembles all section components in order |
-| `/about`, `/destinations`, `/packages`, `/gallery`, `/why`, `/contact` | Standalone pages |
+| `/` | Full landing page — assembles all section components in order |
+| `/about` | About page — `About` + mission statement + `CtaStrip` |
+| `/destinations`, `/packages`, `/gallery`, `/why` | Standalone section pages |
+| `/contact` | `Contact` info + `Booking` form side-by-side |
 | `/terms`, `/privacy`, `/refund` | All use the shared `LegalPage` component |
+
+### Standalone page template
+
+All inner pages follow the same shell: `RevealObserver` + `Nav` + `PageShell(content + CtaStrip)` + `Footer` + `WhatsAppButton`. `PageShell` is a server wrapper that adds the `.page-shell` div (handles top-padding so content clears the fixed nav).
 
 ### Key files
 
@@ -41,20 +47,32 @@ All routes are in `app/`. Each is a thin page file that imports a component or `
 | Component | Type | Notes |
 |-----------|------|-------|
 | `RevealObserver` | `'use client'` | Sets up `IntersectionObserver` for `.reveal` scroll animations; renders `null` |
-| `Nav` | `'use client'` | Active-link tracking via `IntersectionObserver` |
+| `Nav` | `'use client'` | Fixed nav — active-link tracking via `IntersectionObserver` |
 | `Hero` | `'use client'` | 3D mouse-parallax on the card stack |
 | `Destinations` | `'use client'` | Local/International tab toggle |
 | `Packages` | `'use client'` | Scroll-tilt effect on package cards |
-| `Booking` | `'use client'` | Controlled form — client-side only, no backend yet |
+| `Booking` | `'use client'` | Controlled form — submits by opening `wa.me/254143218102` with pre-filled WhatsApp message; no backend |
 | `LegalPage` | Server | Shared reading layout for Terms, Privacy, Refund pages |
-| All others | Server | Static content, no interactivity |
+| `PageShell` | Server | Thin wrapper (`div.page-shell`) for standalone inner pages |
+| `Contact` | Server | Contact info display — used alongside `Booking` on `/contact` |
+| `CtaStrip` | Server | Full-width CTA banner — appears at the bottom of every standalone page |
+| `Footer` | Server | Site footer — appears on all pages |
+| `WhatsAppButton` | Server | Floating WhatsApp button — appears on all pages |
+| `AnimalIcons` | Server | Shared inline-SVG wildlife silhouettes (`ElephantIcon`, `GiraffeIcon`, `LionIcon`, `BirdIcon`, `BirdFlock`) used by `Hero` and `WildlifeMarquee` |
+| `WildlifeMarquee` | Server | Horizontally scrolling wildlife icon strip |
+| `DestinationsGlobe` | Server | Decorative globe/map destinations display |
+| `Marquee` | Server | Text/logo scrolling strip |
+| `StatsInfographic` | Server | Animated statistics section — uses `useCounter` hook |
+| `Testimonials` | Server | Customer reviews section |
+| `Why` | Server | "Why Avinterra" value-prop section |
+| `About` | Server | Company story section |
 
 ### Design system
 
 All CSS is in `globals.css`. CSS custom properties in `:root`:
 - **Palette**: `--bg` `--bg-1` `--bg-2` (near-black), `--ink` `--ink-2` `--ink-3` (warm white → dim)
 - **Accents**: `--accent` (orange), `--accent-2` (amber), `--gold`, `--teal`
-- **Fonts**: `--serif` (Fraunces), `--sans` (Geist), `--mono` (JetBrains Mono) — resolved from CSS variables set by `next/font/google`
+- **Fonts**: `--serif` (Fraunces), `--sans` (Geist), `--mono` (JetBrains Mono) — resolved from CSS variables set by `next/font/google` (`--font-fraunces`, `--font-geist`, `--font-jetbrains-mono`)
 
 **Theme**: a blocking inline script in `app/layout.tsx` reads `localStorage['av-theme']` and sets `data-theme` on `<html>` before first paint to avoid flash. Light/dark variants are CSS `[data-theme="light"]` overrides in `globals.css`.
 

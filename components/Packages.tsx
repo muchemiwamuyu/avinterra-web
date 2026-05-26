@@ -67,7 +67,15 @@ export default function Packages() {
                       <span className="from">STARTING FROM</span>
                       {p.price}
                     </div>
-                    <button className="pkg-book">Book now ↗</button>
+                    <button
+                      className="pkg-book"
+                      onClick={() => {
+                        const msg = `Hi! I'd like to book the *${p.title}* package.\n\n📍 ${p.duration}\n💰 ${p.price}\n\nCould you share availability and next steps?`;
+                        window.open(`https://wa.me/254712894097?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+                      }}
+                    >
+                      Book now ↗
+                    </button>
                   </div>
 
                   {p.inclusions && (
