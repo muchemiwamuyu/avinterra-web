@@ -5,6 +5,8 @@ import Link from "next/link";
 import { PHOTOS } from "@/lib/data";
 import { ElephantIcon, GiraffeIcon, BirdFlock } from "@/components/AnimalIcons";
 
+const HERO_BG = [PHOTOS.safari, PHOTOS.mara, PHOTOS.beach, PHOTOS.fuji];
+
 const CARDS = [
   { cls: "card-a", img: PHOTOS.balloons, meta: "CAPPADOCIA",      title: "Dawn over Göreme" },
   { cls: "card-b", img: PHOTOS.safari,   meta: "MAASAI MARA · KE", title: "The Great Migration" },
@@ -44,6 +46,11 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero">
+      <div className="hero-bg-reel" aria-hidden="true">
+        {HERO_BG.map((src, i) => (
+          <div key={i} className="hero-slide" style={{ backgroundImage: `url(${src})` }} />
+        ))}
+      </div>
       <div className="hero-grid" />
       <div className="hero-halo" />
       <div className="globe-wrap"><div className="globe" /></div>
@@ -92,10 +99,16 @@ export default function Hero() {
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 5H9M9 5L5 1M9 5L5 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" /></svg>
               </span>
             </Link>
-            <Link href="/contact" className="btn" style={{ borderColor: "transparent", paddingLeft: 8 }}>
+            <a
+              href="https://wa.me/254143218102"
+              className="btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ borderColor: "transparent", paddingLeft: 8 }}
+            >
               <span style={{ width: 6, height: 6, background: "#25D366", borderRadius: 99, boxShadow: "0 0 10px #25D366", display: "inline-block" }} />
               Talk to us
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -120,18 +133,28 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="hero-stats">
+      {/* Signature Journeys strip */}
+      <div className="hero-journeys">
         {[
-          { num: "10", unit: "+",  label: "Years of expertise" },
-          { num: "2K", unit: "+",  label: "Destinations served" },
-          { num: "10K",unit: "+",  label: "Happy travellers" },
-          { num: "4.8",unit: "★",  label: "Overall rating" },
-        ].map(({ num, unit, label }) => (
-          <div className="stat" key={label}>
-            <div className="stat-num">{num}<span className="unit">{unit}</span></div>
-            <div className="stat-label">{label}</div>
-          </div>
+          { img: PHOTOS.mara,   country: "KE", tag: "3 DAYS · SAFARI",     label: "Maasai Mara",   price: "from KSH 18,500" },
+          { img: PHOTOS.beach,  country: "KE", tag: "4 DAYS · COAST",      label: "Diani Beach",   price: "from KSH 24,900" },
+          { img: PHOTOS.greece, country: "GR", tag: "8 DAYS · ISLANDS",    label: "Greek Islands", price: "from USD 2,269"  },
+          { img: PHOTOS.fuji,   country: "JP", tag: "10 DAYS · CULTURE",   label: "Japan",         price: "from USD 3,150"  },
+        ].map(({ img, country, tag, label, price }) => (
+          <Link href="/packages" key={label} className="hero-jcard">
+            <div className="hero-jcard-bg" style={{ backgroundImage: `url(${img})` }} />
+            <div className="hero-jcard-body">
+              <span className="hero-jcard-country">{country}</span>
+              <div className="hero-jcard-tag">{tag}</div>
+              <div className="hero-jcard-label">{label}</div>
+              <div className="hero-jcard-price">{price}</div>
+            </div>
+            <div className="hero-jcard-arrow">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </div>
+          </Link>
         ))}
       </div>
 

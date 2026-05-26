@@ -33,10 +33,19 @@ export default function Booking() {
       setStatus({ ok: false, msg: "Please fill in name, email and phone." });
       return;
     }
-    setStatus({
-      ok: true,
-      msg: `Asante, ${form.name.split(" ")[0]}! We'll be in touch within 24 hours about your ${form.dest} trip.`,
-    });
+    const lines = [
+      `*New Inquiry — Avinterra Expeditions*`,
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Phone: ${form.phone}`,
+      `Destination: ${form.dest}`,
+      `Travellers: ${form.travelers}`,
+      form.date ? `Date: ${form.date}` : null,
+      form.notes ? `Notes: ${form.notes}` : null,
+    ].filter(Boolean).join("\n");
+    window.open(`https://wa.me/254143218102?text=${encodeURIComponent(lines)}`, "_blank", "noopener,noreferrer");
+    setStatus({ ok: true, msg: `Opening WhatsApp with your inquiry, ${form.name.split(" ")[0]}! We'll reply within 24 hours.` });
+    setForm(INITIAL);
   };
 
   return (
@@ -133,7 +142,7 @@ export default function Booking() {
               />
             </div>
 
-            <button type="submit" className="booking-submit">
+            <button type="submit" className="booking-submit" disabled={status?.ok === true}>
               Send inquiry
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M1 7H13M13 7L8 2M13 7L8 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

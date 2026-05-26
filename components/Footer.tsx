@@ -11,8 +11,9 @@ export default function Footer() {
               <img
                 src="/logo.svg"
                 alt="Avinterra Expeditions"
-                height={52}
-                style={{ height: 52, width: "auto", maxWidth: "none", flexShrink: 0 }}
+                className="brand-logo"
+                height={96}
+                style={{ height: 96, width: "auto", maxWidth: "none", flexShrink: 0 }}
               />
             </div>
             <div className="foot-brand">Expeditions Limited.</div>
@@ -36,7 +37,7 @@ export default function Footer() {
           <div className="foot-col">
             <h5>COMPANY</h5>
             <ul>
-              {[["About us","/about"],["Why Avinterra","/why"],["Reviews","/why"],["Contact","/contact"]].map(([l,h]) => (
+              {[["About us","/about"],["Why Avinterra","/why"],["Reviews","/gallery"],["Contact","/contact"]].map(([l,h]) => (
                 <li key={l}><Link href={h}>{l}</Link></li>
               ))}
             </ul>
@@ -46,7 +47,7 @@ export default function Footer() {
           <div className="foot-col">
             <h5>LEGAL</h5>
             <ul>
-              {[["Privacy policy","/privacy"],["Terms of service","/terms"],["Booking conditions","/terms"],["Refund policy","/refund"]].map(([l,h]) => (
+              {[["Privacy policy","/privacy"],["Terms of service","/terms"],["Booking conditions","/refund"],["Refund policy","/refund"]].map(([l,h]) => (
                 <li key={l}><Link href={h}>{l}</Link></li>
               ))}
             </ul>

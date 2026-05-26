@@ -57,8 +57,9 @@ export default function Nav() {
             <img
               src="/logo.svg"
               alt="Avinterra Expeditions"
-              height={40}
-              style={{ height: 40, width: "auto", maxWidth: "none", flexShrink: 0 }}
+              className="brand-logo"
+              height={80}
+              style={{ height: 80, width: "auto", maxWidth: "none", flexShrink: 0 }}
             />
           </Link>
 

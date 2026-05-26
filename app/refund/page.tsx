@@ -28,19 +28,33 @@ const SECTIONS: LegalSection[] = [
     ],
   },
   {
-    heading: "3. Flight Refunds",
+    heading: "3. Deposit",
+    paragraphs: [
+      "A non-refundable deposit of 30% of the total booking value is required to secure your booking and date.",
+      "The deposit is payable upon confirmation of the itinerary and is non-refundable under all cancellation scenarios.",
+    ],
+  },
+  {
+    heading: "4. Final Balance Deadline",
+    paragraphs: [
+      "The remaining balance of 70% is due no later than 14 days before the scheduled departure or event date.",
+      "Failure to settle the final balance by this deadline may result in automatic cancellation of the booking without refund of the deposit.",
+    ],
+  },
+  {
+    heading: "5. Flight Refunds",
     paragraphs: [
       "Flight refunds are subject to airline rules and fare conditions. Some discounted tickets may be non-refundable.",
     ],
   },
   {
-    heading: "4. Hotel & Accommodation Refunds",
+    heading: "6. Hotel & Accommodation Refunds",
     paragraphs: [
       "Refunds for accommodation depend on the cancellation policies of the relevant hotels, lodges, and Airbnb hosts.",
     ],
   },
   {
-    heading: "5. Non-Refundable Charges",
+    heading: "7. Non-Refundable Charges",
     paragraphs: ["The following charges are non-refundable:"],
     list: [
       "Visa processing fees",
@@ -50,13 +64,13 @@ const SECTIONS: LegalSection[] = [
     ],
   },
   {
-    heading: "6. Refund Processing",
+    heading: "8. Refund Processing",
     paragraphs: [
       "Approved refunds are processed within 7–14 business days for mobile money or bank transfers.",
     ],
   },
   {
-    heading: "7. Force Majeure",
+    heading: "9. Force Majeure",
     paragraphs: [
       "Refunds may not apply for events beyond reasonable control, including:",
     ],
@@ -69,7 +83,7 @@ const SECTIONS: LegalSection[] = [
     ],
   },
   {
-    heading: "8. Refund Requests",
+    heading: "10. Refund Requests",
     paragraphs: ["To request a refund you must provide:"],
     list: [
       "Booking details",
