@@ -1942,6 +1942,19 @@ footer.foot { padding: 80px 56px 40px; background: var(--bg-1); border-top: 1px 
 .about-promise-item h3 { font-size: 17px; font-weight: 500; margin: 0 0 10px; }
 .about-promise-item p { font-size: 13px; color: var(--ink-2); line-height: 1.7; margin: 0; }
 
+/* Inline pillars list (origin story) */
+.about-pillars-inline { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+.api-row { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; flex-wrap: wrap; }
+.api-arrow { color: var(--accent); font-size: 10px; }
+.api-label { color: var(--ink); font-weight: 500; letter-spacing: 0.08em; }
+.api-sep { color: var(--ink-3); letter-spacing: -0.05em; }
+.api-sub { color: var(--ink-2); }
+
+/* Founder / promise signature */
+.about-signature { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); text-align: right; }
+.about-sig-text { font-family: var(--serif); font-size: 28px; font-style: italic; letter-spacing: -0.02em; color: var(--ink); }
+.about-sig-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--ink-3); margin-top: 6px; }
+
 /* Numbers / stats banner */
 .about-numbers { position: relative; overflow: hidden; }
 .about-numbers-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.25); }

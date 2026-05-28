@@ -47,36 +47,45 @@ export default function AboutPageContent() {
               />
             </div>
             <div className="about-origin-copy reveal">
-              <div className="eyebrow">How it started</div>
+              <div className="eyebrow">Our story</div>
               <h2>
-                From a matatu and a map, <em>to a movement.</em>
+                Architects of memory, <em>guardians of the wild.</em>
               </h2>
               <p>
-                In 2013, a group of Nairobi friends piled into a borrowed
-                matatu, spread a folded map across the dashboard, and drove
-                to the Maasai Mara on nothing but curiosity and a tank of
-                fuel. No itinerary. No WiFi. Just the horizon.
+                Every great journey begins with a heartbeat — the thrum of a
+                safari vehicle crossing the savannah, the rhythmic crunch of
+                boots on Mount Kenya&rsquo;s scree, or the gentle lap of the
+                Indian Ocean against a dhow&rsquo;s hull.
               </p>
               <p>
-                What happened over those four days changed everything. The
-                quality of the light at sunrise. The silence of the open
-                savannah. The feeling that this — <em>this</em> — was what
-                travel was supposed to feel like. When they returned to
-                Nairobi, the questions from friends were instant: &ldquo;How
-                did you do it? Can you arrange the same for us?&rdquo;
+                Avinterra Expeditions was born out of a simple, profound
+                realisation: the modern traveller does not just want to{" "}
+                <em>see</em> Africa — they want to be{" "}
+                <em>changed by it</em>. Founded by{" "}
+                <strong>David Muthui</strong>, a tech-forward visionary with
+                deep roots in East African heritage, Avinterra bridges the gap
+                between old-world wilderness adventure and cutting-edge,
+                seamless trip design.
               </p>
               <p>
-                That was the beginning of Avinterra Expeditions. Not a
-                boardroom decision. Not a business plan. A feeling that was
-                too good to keep to just a few people.
+                We are not just tour operators. We are architects of memory,
+                guardians of the landscape, and your ultimate hosts in the
+                wild.
               </p>
-              <p>
-                Over the years, the matatu became a fleet. The folded map
-                became curated itineraries. The borrowed camping gear became
-                luxury lodges and five-star resorts. But the soul of that
-                first trip — raw, spontaneous, extraordinary — never left
-                us.
-              </p>
+              <div className="about-pillars-inline">
+                {[
+                  { label: "Intelligent Design", sub: "Fluid, hassle-free logistics" },
+                  { label: "Immersive Luxury",   sub: "Deep comfort without isolation" },
+                  { label: "Conscious Footprint",sub: "Conservation built into every mile" },
+                ].map((p) => (
+                  <div className="api-row" key={p.label}>
+                    <span className="api-arrow">&#9658;</span>
+                    <span className="api-label">{p.label}</span>
+                    <span className="api-sep">───►</span>
+                    <span className="api-sub">{p.sub}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -88,10 +97,9 @@ export default function AboutPageContent() {
           <div className="about-quote reveal">
             <div className="about-quote-mark">&ldquo;</div>
             <blockquote>
-              Travel is not a luxury reserved for the few. It is the
-              greatest education available to anyone willing to show up.
-              Our job is simply to make showing up easier — and
-              unforgettable.
+              The modern traveller does not just want to see Africa — they
+              want to be changed by it. Our role is to make that
+              transformation not just possible, but inevitable.
             </blockquote>
             <div className="about-quote-attr">
               <div className="about-quote-name">David Muthui</div>
@@ -122,19 +130,19 @@ export default function AboutPageContent() {
               {
                 num: "01",
                 title: "Intelligent Design",
-                body: "Every itinerary starts with a conversation, not a template. We study your rhythm — how you like mornings, how much activity you want, whether you prefer solitude or atmosphere. Then we engineer the trip around you, not the other way round.",
+                body: "Fluid, hassle-free logistics — every itinerary starts with a conversation, not a template. We use data and digital optimisation to eliminate the traditional frictions of African travel, so you get a flawless, stress-free trip from the moment you land.",
                 icon: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v10m0 0h10M9 13H5m4 0v6m0 0H5a2 2 0 01-2-2v-4m14 6h-4m4 0a2 2 0 002-2v-4m-6 6v-6",
               },
               {
                 num: "02",
                 title: "Immersive Luxury",
-                body: "Luxury isn't about thread count alone. It's the guide who knows the lion's name, the sundowner in the exact right spot, the dinner table set fifty metres from the herd. We source experiences that feel earned, not merely expensive.",
+                body: "Deep comfort without isolation — it's the guide who knows the lion by name, the sundowner in the exact right spot, the dinner table set fifty metres from the herd. We source experiences that feel earned, not merely expensive.",
                 icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
               },
               {
                 num: "03",
                 title: "Conscious Footprint",
-                body: "Every trip we sell puts money directly into local economies. We partner exclusively with operators who employ local communities, protect habitats, and reject practices that harm wildlife. When you travel with us, the land benefits.",
+                body: "Conservation built into every mile — we selectively partner with eco-certified sanctuaries and community-led operators. Every expedition we run actively funds local conservation efforts and education programmes, ensuring your footprint is entirely positive.",
                 icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064",
               },
             ].map((p) => (
@@ -164,8 +172,11 @@ export default function AboutPageContent() {
               </h2>
             </div>
             <p>
-              Whether the call is wild savannah, mountain air, or turquoise
-              water, we have a fully outfitted offering built for it.
+              We design boutique safaris, high-altitude mountain expeditions,
+              and bespoke coastal getaways across East Africa&rsquo;s iconic
+              landscapes — stripping away rigid, generic packages and replacing
+              them with highly personalised, fluid journeys tailored to your
+              rhythm.
             </p>
           </div>
 
@@ -177,16 +188,17 @@ export default function AboutPageContent() {
               <div className="asc-overlay" />
               <div className="asc-body">
                 <div className="eyebrow" style={{ color: "rgba(255,255,255,0.5)" }}>SERVICE 01</div>
-                <h3>Sovereign Safaris</h3>
+                <h3>🌿 Sovereign Safaris</h3>
                 <p>
-                  Private and group safaris across Kenya&rsquo;s greatest
-                  parks — Maasai Mara, Amboseli, Tsavo, Mt Kenya — with
-                  expert guides and hand-picked lodges that put you inside
-                  the landscape, not beside it.
+                  From the legendary river crossings of the Maasai Mara to the
+                  red elephants of Tsavo and the Amboseli swamplands beneath
+                  Kilimanjaro, we bring you face-to-face with the wild.
+                  Indigenous trackers. World-class wildlife photography.
+                  Intimate encounters — no crowds.
                 </p>
                 <button
                   className="asc-cta"
-                  onClick={() => wa("Hi! I'm interested in learning more about your Safari packages. Could you share what's available?")}
+                  onClick={() => wa("Hi! I'm interested in a safari package. Could you share what's available?")}
                 >
                   Explore safaris ↗
                 </button>
@@ -195,23 +207,23 @@ export default function AboutPageContent() {
 
             <div
               className="about-service-card reveal"
-              style={{ backgroundImage: `url(${PHOTOS.hotel3})` }}
+              style={{ backgroundImage: `url(${PHOTOS.mtkenya})` }}
             >
               <div className="asc-overlay" />
               <div className="asc-body">
                 <div className="eyebrow" style={{ color: "rgba(255,255,255,0.5)" }}>SERVICE 02</div>
-                <h3>International Escapes</h3>
+                <h3>🏔️ Peak Expeditions</h3>
                 <p>
-                  Bespoke international packages to Dubai, Greece, Japan,
-                  Egypt, South Africa and beyond. Flights, accommodation,
-                  transfers, and curated experiences all handled from our
-                  Nairobi office — one call, one contact, everything done.
+                  World-class ascents up Mount Kenya and Mount Kilimanjaro, led
+                  by certified high-altitude guides with premium alpine gear.
+                  We prioritise safety, physiological acclimatisation, and the
+                  raw joy of standing on top of Africa.
                 </p>
                 <button
                   className="asc-cta"
-                  onClick={() => wa("Hi! I'm interested in an international travel package. Could you tell me more about your destinations?")}
+                  onClick={() => wa("Hi! I'm interested in a mountain trekking expedition. Could you tell me more?")}
                 >
-                  Explore destinations ↗
+                  Explore peaks ↗
                 </button>
               </div>
             </div>
@@ -223,20 +235,70 @@ export default function AboutPageContent() {
               <div className="asc-overlay" />
               <div className="asc-body">
                 <div className="eyebrow" style={{ color: "rgba(255,255,255,0.5)" }}>SERVICE 03</div>
-                <h3>Coastal Retreats</h3>
+                <h3>⚓ Coastal &amp; Cultural Immersions</h3>
                 <p>
-                  Long weekends and full escapes to Diani, Watamu, Lamu,
-                  and Zanzibar. White sand, world-class seafood, and the
-                  kind of unhurried pace that resets you from the inside out.
+                  Discover the Swahili coast where white sands meet centuries
+                  of maritime history. Exclusive retreats in Lamu, Watamu, and
+                  Diani blend slow-paced luxury with authentic cultural
+                  exchanges that support local artisan economies.
                 </p>
                 <button
                   className="asc-cta"
-                  onClick={() => wa("Hi! I'm interested in a coastal beach retreat. What packages do you have available?")}
+                  onClick={() => wa("Hi! I'm interested in a coastal retreat. What packages do you have available?")}
                 >
                   Explore coastal ↗
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── The Avinterra Difference ─────────────────────── */}
+      <section className="about-pillars" style={{ background: "var(--bg)" }}>
+        <div className="container">
+          <div className="section-head reveal">
+            <div>
+              <div className="eyebrow">The Avinterra difference</div>
+              <h2>Why we&rsquo;re built <em>differently.</em></h2>
+            </div>
+            <p>
+              Three commitments that separate us from every other operator
+              on the continent.
+            </p>
+          </div>
+          <div className="about-pillars-grid">
+            {[
+              {
+                num: "01",
+                title: "Conscious Luxury & Active Stewardship",
+                body: "Luxury should never cost the earth. We selectively partner with eco-certified sanctuaries, private conservancies, and luxury solar-powered camps with a proven record of wildlife protection and community equity. Every expedition actively funds local conservation and community-led education.",
+                icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064",
+              },
+              {
+                num: "02",
+                title: "Tech-Enabled, Human-Centric Design",
+                body: "Our founder's background in Business Information Technology means we use data and digital optimisation to eliminate the traditional frictions of African travel. Real-time route optimisation to avoid crowds. Seamless digital itinerary updates. Complex logistics handled invisibly — you get a flawless, stress-free trip.",
+                icon: "M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v10m0 0h10M9 13H5m4 0v6m0 0H5a2 2 0 01-2-2v-4m14 6h-4m4 0a2 2 0 002-2v-4m-6 6v-6",
+              },
+              {
+                num: "03",
+                title: "Untamed Access",
+                body: "We don't take you to crowded tourist traps. Our relationships with private conservancy rangers and community elders unlock off-the-grid locations, private night game drives, walking safaris, and raw wilderness encounters completely hidden from the standard tourist map.",
+                icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
+              },
+            ].map((p) => (
+              <div className="about-pillar reveal" key={p.num}>
+                <div className="about-pillar-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d={p.icon} stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div className="about-pillar-num">{p.num}</div>
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -305,9 +367,18 @@ export default function AboutPageContent() {
           </div>
           <div className="about-promise-grid">
             {[
-              { title: "Human-first service", body: "Every inquiry is answered by a real person who has been to the destination or spoken to someone who has. No chatbots. No copy-paste responses." },
-              { title: "Price transparency", body: "What we quote is what you pay. No hidden fees revealed at check-in. No sudden surcharges. If something changes, we tell you immediately." },
-              { title: "24-hour WhatsApp access", body: "Our team is reachable on WhatsApp around the clock. Whether you're boarding in Nairobi or checking in at a hotel in Athens, we are one message away." },
+              {
+                title: "To the Explorer",
+                body: "We promise an unhurried, breathtaking encounter with Africa. No rushed schedules, no crowded vehicles — just you and the untamed wild, supported by absolute comfort and expert care.",
+              },
+              {
+                title: "To our Global B2B Partners",
+                body: "We promise institutional-grade reliability, transparent pricing, swift communications, and white-label ground execution that honours your brand's prestige.",
+              },
+              {
+                title: "To our Ecosystem",
+                body: "We promise respectful interaction, active investment in conservation, and zero compromises on the health of our wildlife and local communities.",
+              },
             ].map((item) => (
               <div className="about-promise-item reveal" key={item.title}>
                 <div className="api-check">
@@ -319,6 +390,10 @@ export default function AboutPageContent() {
                 <p>{item.body}</p>
               </div>
             ))}
+          </div>
+          <div className="about-signature reveal">
+            <div className="about-sig-text">Mangala M. David</div>
+            <div className="about-sig-role">Founder, Avinterra Expeditions</div>
           </div>
         </div>
       </section>
