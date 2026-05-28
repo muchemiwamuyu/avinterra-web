@@ -62,7 +62,7 @@ export default function AboutPageContent() {
                 realisation: the modern traveller does not just want to{" "}
                 <em>see</em> Africa — they want to be{" "}
                 <em>changed by it</em>. Founded by{" "}
-                <strong>David Muthui</strong>, a tech-forward visionary with
+                <strong>Mangala M. David</strong>, a tech-forward visionary with
                 deep roots in East African heritage, Avinterra bridges the gap
                 between old-world wilderness adventure and cutting-edge,
                 seamless trip design.
@@ -102,7 +102,7 @@ export default function AboutPageContent() {
               transformation not just possible, but inevitable.
             </blockquote>
             <div className="about-quote-attr">
-              <div className="about-quote-name">David Muthui</div>
+              <div className="about-quote-name">Mangala M. David</div>
               <div className="about-quote-role">Founder &amp; Lead Expedition Designer</div>
             </div>
           </div>
