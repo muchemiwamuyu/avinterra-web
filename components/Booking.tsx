@@ -128,16 +128,23 @@ export default function Booking() {
                     {[
                       "Masai Mara Safari · 3D/2N · KSH 19,500",
                       "Masai Mara National Park · 3D/2N · KSH 37,500",
+                      "Amboseli · 3D/2N · KSH 19,600",
                       "Tsavo Safari · 3D/2N · KSH 18,700",
                       "Tsavo National Park · 3D/2N · KSH 18,700",
+                      "Serengeti · 3D/2N · KSH 45,500",
+                      "Nairobi National Park · 1 day · KSH 3,200",
+                      "Lake Nakuru National Park · 1 day · KSH 4,500",
                       "Mt Kenya Hike & Castle Forest · 1 day · KSH 3,500",
                       "Mt. Longonot Hiking · 1 day · KSH 4,500",
                       "Kiambicho Hills & Murang'a Gorges · 1 day · KSH 5,200",
                       "Karuru Falls Adventure · 1 day · KSH 3,900",
-                      "Salty's on the Creek · Kilifi · KSH 21,950",
-                      "PrideInn Paradise Beach & Spa · Mombasa · KSH 26,540",
-                      "Pangoni Beach Resort & Spa · Mombasa · KSH 21,700",
-                      "The Ark Lodge · Mt Kenya · KSH 22,400",
+                      "Salty's on the Creek · Kilifi · KSH 52,950",
+                      "PrideInn Paradise Beach & Spa · Mombasa · KSH 56,990",
+                      "Pangoni Beach Resort & Spa · Mombasa · KSH 51,700",
+                      "Jambo Travellers Hotel · Mombasa · KSH 22,700",
+                      "Southern Palms Beach Resort · KSH 48,900",
+                      "Sun & Sand Beach Resort · Diani · KSH 42,850",
+                      "The Ark Lodge · Mt Kenya · KSH 32,670",
                     ].map((v) => <option key={v}>{v}</option>)}
                   </optgroup>
                   <optgroup label="International">
