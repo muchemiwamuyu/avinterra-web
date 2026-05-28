@@ -55,7 +55,7 @@ export default function Nav() {
         <div className="nav-inner">
           <Link href="/" className="brand">
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Avinterra Expeditions"
               className="brand-logo"
               height={80}

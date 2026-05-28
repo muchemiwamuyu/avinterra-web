@@ -15,7 +15,7 @@ interface FormState {
 
 const INITIAL: FormState = {
   name: "", email: "", phone: "",
-  dest: "Maasai Mara · KE",
+  dest: "Masai Mara Safari · 3D/2N · KSH 19,500",
   date: "", travelers: "2", notes: "",
 };
 
@@ -51,7 +51,7 @@ export default function Booking() {
       form.date ? `Date: ${form.date}` : null,
       form.notes ? `Notes: ${form.notes}` : null,
     ].filter(Boolean).join("\n");
-    window.open(`https://wa.me/254712894097?text=${encodeURIComponent(lines)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/254759935642?text=${encodeURIComponent(lines)}`, "_blank", "noopener,noreferrer");
     setStatus({ ok: true, msg: `Opening WhatsApp with your inquiry, ${form.name.split(" ")[0]}! We'll reply within 24 hours.` });
     setForm(INITIAL);
   };
@@ -75,7 +75,7 @@ export default function Booking() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M17.5 14.4l-2.4-1.2c-.4-.2-.9-.1-1.2.2l-1 1c-1.5-.8-2.7-2-3.5-3.5l1-1c.3-.3.4-.8.2-1.2L9.4 6.3c-.3-.6-1-.8-1.5-.4-1.6 1-2.5 2.8-2.1 4.8.7 4 4 7.3 8 8 2 .4 3.8-.5 4.8-2.1.3-.5.1-1.2-.4-1.5z" />
                 </svg>
-                <span>+254 712 894 097 · WhatsApp 24/7</span>
+                <span>+254 759 935 642 · WhatsApp 24/7</span>
               </div>
             </div>
           </div>
@@ -125,10 +125,30 @@ export default function Booking() {
                 <label htmlFor="bf-dest">Destination interest</label>
                 <select id="bf-dest" value={form.dest} onChange={set("dest")}>
                   <optgroup label="Local · Kenya">
-                    {["Maasai Mara · KE","Diani Beach · KE","Amboseli · KE","Mt Kenya · KE","Tsavo · KE","Kiambicho Hills · KE","Salty's on the Creek · KE"].map((v) => <option key={v}>{v}</option>)}
+                    {[
+                      "Masai Mara Safari · 3D/2N · KSH 19,500",
+                      "Masai Mara National Park · 3D/2N · KSH 37,500",
+                      "Tsavo Safari · 3D/2N · KSH 18,700",
+                      "Tsavo National Park · 3D/2N · KSH 18,700",
+                      "Mt Kenya Hike & Castle Forest · 1 day · KSH 3,500",
+                      "Mt. Longonot Hiking · 1 day · KSH 4,500",
+                      "Kiambicho Hills & Murang'a Gorges · 1 day · KSH 5,200",
+                      "Karuru Falls Adventure · 1 day · KSH 3,900",
+                      "Salty's on the Creek · Kilifi · KSH 21,950",
+                      "PrideInn Paradise Beach & Spa · Mombasa · KSH 26,540",
+                      "Pangoni Beach Resort & Spa · Mombasa · KSH 21,700",
+                      "The Ark Lodge · Mt Kenya · KSH 22,400",
+                    ].map((v) => <option key={v}>{v}</option>)}
                   </optgroup>
                   <optgroup label="International">
-                    {["Dubai · UAE","Greece","Japan","Zanzibar","Egypt","South Africa"].map((v) => <option key={v}>{v}</option>)}
+                    {[
+                      "Greece · 8D/7N · USD 2,269",
+                      "Mexico · 8D/7N · USD 6,570",
+                      "Japan · 10D/11N · Contact us",
+                      "Dubai · UAE",
+                      "Egypt",
+                      "Zanzibar",
+                    ].map((v) => <option key={v}>{v}</option>)}
                   </optgroup>
                   <option>Not sure — surprise me</option>
                 </select>

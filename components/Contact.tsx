@@ -9,15 +9,15 @@ interface ContactCell {
 const CELLS: ContactCell[] = [
   {
     label: "PHONE",
-    value: "+254 712 894 097",
+    value: "+254 143 218 102",
     sub: "Mon–Sat · 8am – 7pm EAT",
-    href: "tel:+254712894097",
+    href: "tel:+254143218102",
   },
   {
     label: "WHATSAPP",
-    value: "+254 712 894 097",
+    value: "+254 759 935 642",
     sub: "24/7 — usually a few minutes",
-    href: "https://wa.me/254712894097",
+    href: "https://wa.me/254759935642",
   },
   {
     label: "EMAIL",

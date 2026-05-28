@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import BackToTop from "@/components/BackToTop";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -58,6 +59,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <BackToTop />
       </body>
     </html>
   );

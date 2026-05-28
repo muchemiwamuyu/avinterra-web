@@ -14,7 +14,7 @@ export default function CtaStrip() {
               Book a tour ↗
             </Link>
             <a
-              href="https://wa.me/254712894097"
+              href="https://wa.me/254759935642"
               target="_blank"
               rel="noopener noreferrer"
               className="btn"
