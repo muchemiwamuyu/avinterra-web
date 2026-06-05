@@ -89,11 +89,13 @@ function project(lat: number, lon: number, rot: number, R: number) {
 
 export default function DestinationsGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isClient, setIsClient] = useState(false);
   const rotRef    = useRef(-36 * DEG); // start with East Africa centered
   const pausedRef = useRef(false);
   const rafRef    = useRef(0);
 
   useEffect(() => {
+    setIsClient(true);
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -327,7 +329,7 @@ export default function DestinationsGlobe() {
         </div>
 
         <div className="globe-stage reveal">
-          <canvas ref={canvasRef} className="globe-canvas" />
+          {isClient && <canvas ref={canvasRef} className="globe-canvas" />}
         </div>
       </div>
     </section>

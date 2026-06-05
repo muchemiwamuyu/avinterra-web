@@ -1,5 +1,6 @@
 "use client";
 
+// Component for rendering travel packages
 import { useRef, useEffect, useState, useMemo } from "react";
 import { PACKAGES } from "@/lib/data";
 
@@ -16,6 +17,7 @@ function parsePrice(price: string): { currency: string; num: number } | null {
 
 export default function Packages() {
   const railRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<Filter>("all");
   const [search, setSearch] = useState("");
@@ -45,6 +47,7 @@ export default function Packages() {
     }), [filter, search]);
 
   useEffect(() => {
+    setMounted(true);
     const rail = railRef.current;
     if (!rail) return;
     const onScroll = () => {
@@ -112,7 +115,9 @@ export default function Packages() {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <span className="pkg-count">{filtered.length} package{filtered.length !== 1 ? "s" : ""}</span>
+          <span className="pkg-count">
+            {mounted ? `${filtered.length} package${filtered.length !== 1 ? "s" : ""}` : ""}
+          </span>
         </div>
 
         {/* Package grid */}

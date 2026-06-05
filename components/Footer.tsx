@@ -21,22 +21,19 @@ export default function Footer() {
       <div className="container">
         <div className="foot-top">
           {/* Brand */}
-          <div>
-            <div className="brand">
-              <img
-                src="/logo.svg"
-                alt="Avinterra Expeditions"
-                className="brand-logo"
-                height={96}
-                style={{ height: 96, width: "auto", maxWidth: "none", flexShrink: 0 }}
-              />
-            </div>
-            <div className="foot-brand">Expeditions Limited.</div>
-            <p className="foot-tag">
-              Cinematic safaris, coastal escapes, and international getaways —
-              engineered for the story.
-            </p>
-          </div>
+          <Link href="/" className="brand" style={{ marginBottom: 24, display: "inline-flex" }}>
+            <img
+              src="/logo.png"
+              alt="Avinterra Expeditions"
+              className="brand-logo"
+              height={120}
+              style={{ height: 120, width: "auto", maxWidth: "none", flexShrink: 0 }}
+            />
+          </Link>
+          <p className="foot-tag">
+            Cinematic safaris, coastal escapes, and international getaways —
+            engineered for the story.
+          </p>
 
           {/* Explore */}
           <div className="foot-col">
@@ -106,10 +103,10 @@ export default function Footer() {
                 <path d="M.057 24l1.687-6.163A11.867 11.867 0 010 11.93C0 5.351 5.351 0 11.93 0 18.51 0 23.86 5.351 23.86 11.93c0 6.579-5.35 11.93-11.93 11.93-2.029 0-4.017-.514-5.79-1.488L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.282 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886a9.825 9.825 0 001.518 5.27l-.999 3.648 3.726-.97zM17.99 14.34c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.173.198-.297.298-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z" />
               </svg>
             </a>
-            <a href="https://instagram.com/avinterraexpeditions" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://www.instagram.com/avinterra/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
             </a>
-            <a href="https://facebook.com/avinterraexpeditions" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=61590465815846" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M14 9V7a1 1 0 011-1h2V3h-3a4 4 0 00-4 4v2H8v3h2v9h3v-9h2.5l.5-3H13z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
             </a>
             <a href="https://tiktok.com/@avinterraexpeditions" target="_blank" rel="noopener noreferrer" aria-label="TikTok">

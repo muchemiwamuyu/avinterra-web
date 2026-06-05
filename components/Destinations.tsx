@@ -45,8 +45,25 @@ function DestCard({ d, tab, tall }: { d: Destination; tab: string; tall: boolean
 }
 
 export default function Destinations() {
+  const [mounted, setMounted] = useState(false);
   const [tab, setTab] = useState<"local" | "intl">("local");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const data = tab === "local" ? LOCAL : INTL;
+
+  if (!mounted) return (
+    <section id="destinations">
+      <div className="container">
+        <div className="section-head">
+          <div className="eyebrow">03 · Tour categories</div>
+          <h2>Loading...</h2>
+        </div>
+      </div>
+    </section>
+  );
 
   return (
     <section id="destinations">
