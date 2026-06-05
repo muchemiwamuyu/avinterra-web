@@ -22,7 +22,7 @@ const SECTIONS: LegalSection[] = [
     heading: "2. Tour & Safari Packages",
     paragraphs: ["Refunds for tour and safari packages are tiered by timing:"],
     list: [
-      "More than 14 days before departure: up to 80% refund.",
+      "More than 14 days before departure: up to 70% refund.",
       "7–14 days before departure: up to 50% refund.",
       "Less than 7 days before departure: limited or no refund.",
     ],
