@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Geist, JetBrains_Mono } from "next/font/google";
+import Script from "next/script"; // 1. Import the Next.js Script component
 import "./globals.css";
 import BackToTop from "@/components/BackToTop";
 
@@ -53,11 +54,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('av-theme');if(!t){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})()`,
-          }}
-        />
+        <Script id="theme-initializer" strategy="beforeInteractive" src="/theme-init.js" />
         {children}
         <BackToTop />
       </body>

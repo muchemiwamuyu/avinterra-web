@@ -89,13 +89,11 @@ function project(lat: number, lon: number, rot: number, R: number) {
 
 export default function DestinationsGlobe() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isClient, setIsClient] = useState(false);
   const rotRef    = useRef(-36 * DEG); // start with East Africa centered
   const pausedRef = useRef(false);
   const rafRef    = useRef(0);
 
   useEffect(() => {
-    setIsClient(true);
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -164,9 +162,8 @@ export default function DestinationsGlobe() {
         for (let ln = -180; ln <= 180; ln += 3) {
           const p = project(lt, ln, rot, R);
           if (p.z < 0) { first = true; continue; }
-          first
-            ? ctx.moveTo(cx + p.x, cy + p.y)
-            : ctx.lineTo(cx + p.x, cy + p.y);
+          if (first) ctx.moveTo(cx + p.x, cy + p.y);
+          else ctx.lineTo(cx + p.x, cy + p.y);
           first = false;
         }
         ctx.stroke();
@@ -178,9 +175,8 @@ export default function DestinationsGlobe() {
         for (let lt = -88; lt <= 88; lt += 3) {
           const p = project(lt, ln, rot, R);
           if (p.z < 0) { first = true; continue; }
-          first
-            ? ctx.moveTo(cx + p.x, cy + p.y)
-            : ctx.lineTo(cx + p.x, cy + p.y);
+          if (first) ctx.moveTo(cx + p.x, cy + p.y);
+          else ctx.lineTo(cx + p.x, cy + p.y);
           first = false;
         }
         ctx.stroke();
@@ -193,9 +189,8 @@ export default function DestinationsGlobe() {
         for (const [ln, lt] of poly) {
           const p = project(lt, ln, rot, R);
           if (p.z < 0) { penDown = false; continue; }
-          penDown
-            ? ctx.lineTo(cx + p.x, cy + p.y)
-            : ctx.moveTo(cx + p.x, cy + p.y);
+          if (penDown) ctx.lineTo(cx + p.x, cy + p.y);
+          else ctx.moveTo(cx + p.x, cy + p.y);
           penDown = true;
         }
         ctx.fillStyle   = "rgba(48,122,68,0.34)";
@@ -329,7 +324,7 @@ export default function DestinationsGlobe() {
         </div>
 
         <div className="globe-stage reveal">
-          {isClient && <canvas ref={canvasRef} className="globe-canvas" />}
+          <canvas ref={canvasRef} className="globe-canvas" />
         </div>
       </div>
     </section>

@@ -22,6 +22,7 @@ export default function Footer() {
         <div className="foot-top">
           {/* Brand */}
           <Link href="/" className="brand" style={{ marginBottom: 24, display: "inline-flex" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo.png"
               alt="Avinterra Expeditions"

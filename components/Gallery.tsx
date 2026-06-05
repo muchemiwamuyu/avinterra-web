@@ -72,6 +72,7 @@ export default function Gallery() {
             </svg>
           </button>
 
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="lb-img"
             src={GALLERY[activeIdx].src}

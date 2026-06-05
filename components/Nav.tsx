@@ -30,9 +30,6 @@ export default function Nav() {
   const theme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getServerThemeSnapshot);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close mobile menu on route change
-  useEffect(() => { setMenuOpen(false); }, [pathname]);
-
   // Prevent body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -54,6 +51,7 @@ export default function Nav() {
       <nav className="nav">
         <div className="nav-inner">
           <Link href="/" className="brand">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo.png"
               alt="Avinterra Expeditions"

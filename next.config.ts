@@ -24,12 +24,8 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
-      {
-        source: "/_next/static/(.*)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
+      // /_next/static/ cache handled by nginx in production — omit here so dev
+      // mode browsers always fetch fresh JS chunks after a server restart.
     ];
   },
 };

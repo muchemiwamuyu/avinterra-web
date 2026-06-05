@@ -16,8 +16,8 @@ export const PHOTOS = {
   fuji:         I("fuji.jpg"),
   diani:        I("diani.jpg"),
   // Hotel / lodge imagery — used in About page
-  aboutA:       I("lodge.jpg"),
-  aboutB:       I("suite.jpg"),
+  aboutA:       I("hotel-dining.jpg"),
+  aboutB:       I("hotel-pool.jpg"),
   hotel1:       I("hotel-pool.jpg"),
   hotel2:       I("hotel-dining.jpg"),
   hotel3:       I("hotel-coastal.jpg"),
@@ -35,7 +35,7 @@ export const PHOTOS = {
   egypt:        I("egypt.jpg"),
   zanzibar:     I("zanzibar.jpg"),
   sa:           I("cultural.jpg"),
-  lion:         I("lion.jpg"),
+  lion:         I("lion-mara.jpg"),
   elephant:     I("amboseli.jpg"),
   leopard:      I("leopard.jpg"),
   buffalo:      I("buffalo.jpg"),
@@ -72,31 +72,39 @@ export const PHOTOS = {
   avB:          I("av-b.jpg"),
   avC:          I("av-c.jpg"),
   bookingArt:   I("gal6.jpg"),
-  // New International Posters
-  posterBangkok: I("BANGKOK.png"),
-  posterDubai:   I("DUBAI.png"),
-  posterEgypt:   I("EGYPT.png"),
-  posterFrance:  I("FRANCE.png"),
-  posterGermany: I("GERMANY.png"),
-  posterGreece:  I("GREECE.png"),
-  posterIstanbul:I("ISTANBUL.png"),
-  posterLondon:  I("LONDON.png"),
-  posterMadagascar: I("MADAGASCAR (3).png"),
-  posterMaldives:I("MALDIVES (1).png"),
-  posterMexico:  I("MEXICO 1.png"),
-  posterNorthKorea: I("NORTH KOREA.png"),
-  posterNorway:  I("NORWAY (1).png"),
-  posterOslo:    I("OSLO.png"),
-  posterRio:     I("RIO DE JANEIRO Brazil (1).png"),
-  posterSingapore: I("SINGAPORE (1).png"),
-  posterSouthAfrica: I("SOUTH AFRICA (1).png"),
-  posterSouthKorea: I("SOUTH KOREA.png"),
-  posterSpain:   I("SPAIN.png"),
-  posterThailand: I("THAILAND.png"),
+  // International Posters
+  posterAcropolis:   I("ACROPOLIS.png"),
+  posterBangkok:     I("BANGKOK.png"),
+  posterDubai:       I("DUBAI.png"),
+  posterEgypt:       I("EGYPT.png"),
+  posterEurope:      I("EUR.png"),
+  posterFrance:      I("FRANCE.png"),
+  posterGermany:     I("GERMANY.png"),
+  posterGermanyAlt:  I("germany-poster-alt.png"),
+  posterGreece:      I("GREECE.png"),
+  posterIstanbul:    I("ISTANBUL.png"),
+  posterIstanbulAlt: I("istanbul-poster-alt.png"),
+  posterLondon:      I("LONDON.png"),
+  posterMadagascar:    I("madagascar-poster.png"),
+  posterMadagascarAlt: I("madagascar-poster-alt.png"),
+  posterMaldives:      I("maldives-poster.png"),
+  posterMexico:        I("mexico-poster.png"),
+  posterNorthKorea:    I("north-korea-poster.png"),
+  posterNorway:        I("norway-poster.png"),
+  posterOslo:          I("OSLO.png"),
+  posterRio:           I("rio-poster.png"),
+  posterSingapore:     I("singapore-poster.png"),
+  posterSouthAfrica:   I("south-africa-poster.png"),
+  posterSouthKorea:    I("south-korea-poster.png"),
+  posterSpain:         I("SPAIN.png"),
+  posterThailand:      I("THAILAND.png"),
+  cityPoster2:         I("city-poster-2.png"),
+  cityPoster4:         I("city-poster-4.png"),
+  cityPoster5:         I("city-poster-5.png"),
 };
 
 /** @deprecated kept for any remaining direct callers — prefer PHOTOS keys */
-export const img = (_id: string, _w = 1200) => "";
+export const img = (): string => "";
 
 export interface Destination {
   name: string;
@@ -128,8 +136,8 @@ export const LOCAL: Destination[] = [
 ];
 
 export const INTL: Destination[] = [
-  { name: "Greece",            meta: "8 days · 7 nights · Athens / Mykonos / Santorini", price: "USD 2,269", img: PHOTOS.pkgGreece },
-  { name: "Mexico",            meta: "8 days · 7 nights · Mexico City",                  price: "USD 6,570", img: PHOTOS.pkgMexico },
+  { name: "Greece",            meta: "8 days · 7 nights · Athens / Mykonos / Santorini", price: "USD 2,269", img: PHOTOS.posterGreece },
+  { name: "Mexico",            meta: "8 days · 7 nights · Mexico City",                  price: "USD 6,570", img: PHOTOS.posterMexico },
   { name: "Japan",             meta: "10 days · 11 nights · Tokyo · Kyoto · Mt Fuji",    price: "Contact us", img: PHOTOS.pkgJapan },
   { name: "Dubai",             meta: "5 days · city",     price: "USD 1,290", img: PHOTOS.posterDubai },
   { name: "Egypt",             meta: "7 days · history",  price: "USD 1,780", img: PHOTOS.posterEgypt },

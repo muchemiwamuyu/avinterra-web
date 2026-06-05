@@ -24,7 +24,7 @@ All routes are in `app/`. The home page assembles every section sequentially; st
 | Route | Notes |
 |-------|-------|
 | `/` | Full landing page — assembles all section components in order |
-| `/about` | About page — `About` + mission statement + `CtaStrip` |
+| `/about` | About page — `AboutPageContent` + mission statement + `CtaStrip` |
 | `/destinations`, `/packages`, `/gallery`, `/why` | Standalone section pages |
 | `/contact` | `Contact` info + `Booking` form side-by-side |
 | `/terms`, `/privacy`, `/refund` | All use the shared `LegalPage` component |
@@ -39,7 +39,7 @@ All inner pages follow the same shell: `RevealObserver` + `Nav` + `PageShell(con
 |------|------|
 | `app/layout.tsx` | Root layout — loads fonts, injects theme init script, sets OG metadata |
 | `app/globals.css` | **Entire design system lives here** — Tailwind used only for layout utilities |
-| `lib/data.ts` | All content: `PHOTOS`, `LOCAL`, `INTL`, `PACKAGES`, `WHY`, `TESTIMONIALS`, `GALLERY`, `BIG_FIVE` |
+| `lib/data.ts` | All content: `PHOTOS`, `LOCAL`, `INTL`, `PACKAGES`, `WHY`, `TESTIMONIALS`, `GALLERY`, `BIG_FIVE`, plus exported contact constants (`WA_NUMBER`, `BOOKING_PHONE`) |
 | `lib/useCounter.ts` | `useCounter` hook — counts up to a target when element scrolls into view, respects `prefers-reduced-motion` |
 
 ### Component map
@@ -47,17 +47,20 @@ All inner pages follow the same shell: `RevealObserver` + `Nav` + `PageShell(con
 | Component | Type | Notes |
 |-----------|------|-------|
 | `RevealObserver` | `'use client'` | Sets up `IntersectionObserver` for `.reveal` scroll animations; renders `null` |
-| `Nav` | `'use client'` | Fixed nav — active-link tracking via `IntersectionObserver` |
+| `Nav` | `'use client'` | Fixed nav — active-link tracking via `IntersectionObserver`; theme toggle via custom `av-theme-change` event + `useSyncExternalStore` |
 | `Hero` | `'use client'` | 3D mouse-parallax on the card stack |
 | `Destinations` | `'use client'` | Local/International tab toggle |
 | `Packages` | `'use client'` | Scroll-tilt effect on package cards |
-| `Booking` | `'use client'` | Controlled form — submits by opening `wa.me/254143218102` with pre-filled WhatsApp message; no backend |
+| `Booking` | `'use client'` | Controlled form — submits by opening `wa.me/${WA_NUMBER}` with a pre-filled WhatsApp message; no backend |
+| `Gallery` | `'use client'` | Photo gallery with lightbox/modal |
 | `LegalPage` | Server | Shared reading layout for Terms, Privacy, Refund pages |
 | `PageShell` | Server | Thin wrapper (`div.page-shell`) for standalone inner pages |
+| `AboutPageContent` | Server | About page content sections |
 | `Contact` | Server | Contact info display — used alongside `Booking` on `/contact` |
 | `CtaStrip` | Server | Full-width CTA banner — appears at the bottom of every standalone page |
 | `Footer` | Server | Site footer — appears on all pages |
 | `WhatsAppButton` | Server | Floating WhatsApp button — appears on all pages |
+| `BackToTop` | Server | Back-to-top scroll button |
 | `AnimalIcons` | Server | Shared inline-SVG wildlife silhouettes (`ElephantIcon`, `GiraffeIcon`, `LionIcon`, `BirdIcon`, `BirdFlock`) used by `Hero` and `WildlifeMarquee` |
 | `WildlifeMarquee` | Server | Horizontally scrolling wildlife icon strip |
 | `DestinationsGlobe` | Server | Decorative globe/map destinations display |
@@ -71,10 +74,16 @@ All inner pages follow the same shell: `RevealObserver` + `Nav` + `PageShell(con
 
 All CSS is in `globals.css`. CSS custom properties in `:root`:
 - **Palette**: `--bg` `--bg-1` `--bg-2` (near-black), `--ink` `--ink-2` `--ink-3` (warm white → dim)
-- **Accents**: `--accent` (orange), `--accent-2` (amber), `--gold`, `--teal`
-- **Fonts**: `--serif` (Fraunces), `--sans` (Geist), `--mono` (JetBrains Mono) — resolved from CSS variables set by `next/font/google` (`--font-fraunces`, `--font-geist`, `--font-jetbrains-mono`)
+- **Accents**: `--accent` (orange `#e85c2b`), `--accent-2` (amber `#f3a64a`), `--gold`, `--teal`
+- **Fonts**: `--serif` (Fraunces), `--sans` (Geist), `--mono` (JetBrains Mono) — resolved from CSS variables set by `next/font/google`
 
-**Theme**: a blocking inline script in `app/layout.tsx` reads `localStorage['av-theme']` and sets `data-theme` on `<html>` before first paint to avoid flash. Light/dark variants are CSS `[data-theme="light"]` overrides in `globals.css`.
+**Theme**: a blocking inline script in `app/layout.tsx` reads `localStorage['av-theme']` and sets `data-theme` on `<html>` before first paint to avoid flash. Light/dark variants are CSS `[data-theme="light"]` overrides in `globals.css`. Theme changes are broadcast via a custom `av-theme-change` DOM event so `Nav` can react without prop drilling.
+
+### Coding conventions
+
+- **Styling**: Use CSS custom properties from `:root` (e.g. `var(--accent)`, `var(--bg)`) for color and typography. Use Tailwind only for spacing/layout utilities (`flex`, `grid`, `gap-4`, etc.).
+- **Components**: Default to Server Components. Add `'use client'` only when hooks, event listeners, or browser APIs are needed.
+- **Animations**: Apply the `.reveal` class to elements that should animate on scroll — `RevealObserver` handles the rest.
 
 ### Scroll reveal
 
@@ -82,7 +91,7 @@ Elements with `.reveal` class start hidden (`opacity: 0; transform: translateY(3
 
 ### Adding content
 
-All destination, package, testimonial, and gallery data is in `lib/data.ts`. Images are Unsplash URLs built with the `img(id, width)` helper — replace the Unsplash photo ID to swap an image.
+All destination, package, testimonial, and gallery data is in `lib/data.ts`. Images are served locally from `public/images/`. To swap an image, drop the new file into `public/images/` and update the `PHOTOS` mapping in `lib/data.ts`. Contact/phone constants (`WA_NUMBER`, `BOOKING_PHONE`, etc.) are also exported from `lib/data.ts` — edit them there, not at call sites.
 
 ### Deployment
 
