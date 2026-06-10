@@ -843,7 +843,7 @@ section { position: relative; padding: 120px 56px; }
   border-radius: 18px;
   overflow: hidden;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   cursor: pointer;
   transition: transform .5s cubic-bezier(.2,.7,.3,1);
 }
@@ -851,7 +851,7 @@ section { position: relative; padding: 120px 56px; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(7,7,10,0.92));
+  background: linear-gradient(180deg, rgba(7,7,10,0.7) 0%, rgba(7,7,10,0.1) 22%, transparent 36%, rgba(7,7,10,0.92) 100%);
 }
 .cat-card:hover { transform: translateY(-4px); }
 .cat-card.tall { grid-row: span 2; height: auto; min-height: 600px; }
