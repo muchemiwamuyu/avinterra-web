@@ -100,7 +100,7 @@ export default function Hero() {
               </span>
             </Link>
             <a
-              href="https://wa.me/254759935642"
+              href="https://wa.me/254141920923"
               className="btn"
               target="_blank"
               rel="noopener noreferrer"

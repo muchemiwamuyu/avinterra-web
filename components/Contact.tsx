@@ -15,9 +15,9 @@ const CELLS: ContactCell[] = [
   },
   {
     label: "WHATSAPP",
-    value: "+254 759 935 642",
+    value: "+254 141 920923",
     sub: "24/7 — usually a few minutes",
-    href: "https://wa.me/254759935642",
+    href: "https://wa.me/254141920923",
   },
   {
     label: "EMAIL",

@@ -2,7 +2,7 @@
 
 import { PHOTOS } from "@/lib/data";
 
-const WA = "254759935642";
+const WA = "254141920923";
 
 function wa(msg: string) {
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");

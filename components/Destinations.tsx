@@ -8,7 +8,7 @@ function DestCard({ d, tab, tall }: { d: Destination; tab: string; tall: boolean
 
   const openWhatsApp = () => {
     const msg = `Hi! I'm interested in the *${d.name}* package (${d.meta} · ${d.price}). Could you share more details and availability?`;
-    window.open(`https://wa.me/254759935642?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/254141920923?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
   };
 
   return (

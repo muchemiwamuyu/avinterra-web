@@ -152,7 +152,7 @@ export default function Packages() {
                         className="pkg-book"
                         onClick={() => {
                           const msg = `Hi! I'd like to book the *${p.title}* package.\n\n📍 ${p.duration}\n💰 ${p.price}\n\nCould you share availability and next steps?`;
-                          window.open(`https://wa.me/254759935642?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+                          window.open(`https://wa.me/254141920923?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
                         }}
                       >
                         Book now ↗
@@ -267,7 +267,7 @@ export default function Packages() {
             </div>
             <button
               className="calc-cta"
-              onClick={() => window.open(`https://wa.me/254759935642?text=${encodeURIComponent(calcWaMsg)}`, "_blank", "noopener,noreferrer")}
+              onClick={() => window.open(`https://wa.me/254141920923?text=${encodeURIComponent(calcWaMsg)}`, "_blank", "noopener,noreferrer")}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.5 14.4l-2.4-1.2c-.4-.2-.9-.1-1.2.2l-1 1c-1.5-.8-2.7-2-3.5-3.5l1-1c.3-.3.4-.8.2-1.2L9.4 6.3c-.3-.6-1-.8-1.5-.4-1.6 1-2.5 2.8-2.1 4.8.7 4 4 7.3 8 8 2 .4 3.8-.5 4.8-2.1.3-.5.1-1.2-.4-1.5z" />
