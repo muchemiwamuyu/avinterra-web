@@ -3,8 +3,8 @@
 const I = (name: string) => `/images/${name}`;
 
 // WhatsApp contact number (international format, no +)
-export const WA_NUMBER = "254759935642";
-export const WA_DISPLAY = "+254 759 935 642";
+export const WA_NUMBER = "254141920923";
+export const WA_DISPLAY = "+254 141 920923";
 
 // Booking / calling number
 export const BOOKING_PHONE = "+254 143 218 102";
@@ -126,21 +126,21 @@ export const LOCAL: Destination[] = [
   { name: "PrideInn Paradise",   meta: "3 days · Mombasa beach & spa", price: "KSH 56,990", img: PHOTOS.pkgPrideInn },
   { name: "Pangoni Beach Resort",meta: "3 days · Mombasa resort & spa",price: "KSH 51,700", img: PHOTOS.pkgPangoni },
   { name: "The Ark Lodge",       meta: "3 days · Mt Kenya wildlife",   price: "KSH 32,670", img: PHOTOS.pkgArkLodge },
-  { name: "Jambo Travellers Hotel", meta: "3 days · 2 nights · Mombasa", price: "KSH 22,700", img: PHOTOS.pkgJambo },
+  { name: "Jambo Travellers Hotel", meta: "3 days · 2 nights · Mombasa", price: "KSH 23,700", img: PHOTOS.pkgJambo },
   { name: "Lake Nakuru NP",      meta: "1 day · flamingoes & game drive", price: "KSH 4,500", img: PHOTOS.pkgNakuru },
   { name: "Nairobi National Park", meta: "1 day · city wildlife",       price: "KSH 3,200",  img: PHOTOS.pkgNairobiNP },
   { name: "Serengeti",           meta: "3 days · 2 nights · Tanzania",  price: "KSH 45,500", img: PHOTOS.pkgSerengeti },
   { name: "Southern Palms Beach",meta: "coast · all inclusive",         price: "KSH 48,900", img: PHOTOS.pkgSouthernPalms },
-  { name: "Sun & Sand Resort",   meta: "3 days · 2 nights · Diani",    price: "KSH 42,850", img: PHOTOS.pkgSunSand },
+  { name: "Sun & Sand Resort",   meta: "3 days · 2 nights · Diani",    price: "KSH 42,650", img: PHOTOS.pkgSunSand },
   { name: "Amboseli",            meta: "3 days · 2 nights · safari",   price: "KSH 19,600", img: PHOTOS.pkgAmboseli },
 ];
 
 export const INTL: Destination[] = [
-  { name: "Greece",            meta: "8 days · 7 nights · Athens / Mykonos / Santorini", price: "USD 2,269", img: PHOTOS.posterGreece },
-  { name: "Mexico",            meta: "8 days · 7 nights · Mexico City",                  price: "USD 6,570", img: PHOTOS.posterMexico },
+  { name: "Greece",            meta: "8 days · 7 nights · Athens / Mykonos / Santorini", price: "USD 5,369", img: PHOTOS.posterGreece },
+  { name: "Mexico",            meta: "8 days · 7 nights · Mexico City",                  price: "USD 7,490", img: PHOTOS.posterMexico },
   { name: "Japan",             meta: "10 days · 11 nights · Tokyo · Kyoto · Mt Fuji",    price: "Contact us", img: PHOTOS.pkgJapan },
-  { name: "Dubai",             meta: "5 days · city",     price: "USD 1,290", img: PHOTOS.posterDubai },
-  { name: "Egypt",             meta: "7 days · history",  price: "USD 1,780", img: PHOTOS.posterEgypt },
+  { name: "Dubai",             meta: "5 days · city",     price: "USD 1,356", img: PHOTOS.posterDubai },
+  { name: "Egypt",             meta: "8 days · history",  price: "USD 4,290", img: PHOTOS.posterEgypt },
   { name: "Zanzibar",          meta: "5 days · coast",    price: "USD   890", img: PHOTOS.zanzibar },
   { name: "Bangkok",           meta: "5 days · Thailand", price: "Contact us", img: PHOTOS.posterBangkok },
   { name: "Istanbul",          meta: "6 days · Turkey",   price: "Contact us", img: PHOTOS.posterIstanbul },
@@ -175,7 +175,7 @@ const INTL_PACKAGES: Package[] = [
     intl: true,
     title: "Greece",
     duration: "8 DAYS · 7 NIGHTS · ATHENS / MYKONOS / SANTORINI",
-    price: "USD 2,269",
+    price: "USD 5,369",
     img: PHOTOS.posterGreece,
     inclusions: [
       "All taxes & service charges",
@@ -200,7 +200,7 @@ const INTL_PACKAGES: Package[] = [
     intl: true,
     title: "Mexico",
     duration: "8 DAYS · 7 NIGHTS · MEXICO CITY",
-    price: "USD 6,570",
+    price: "USD 7,490",
     img: PHOTOS.posterMexico,
     inclusions: [
       "Round-trip flights Nairobi (NBO) → Mexico City (MEX)",
@@ -249,7 +249,7 @@ const INTL_PACKAGES: Package[] = [
     intl: true,
     title: "Dubai",
     duration: "5 DAYS · 4 NIGHTS",
-    price: "USD 1,290",
+    price: "USD 1,356",
     img: PHOTOS.posterDubai,
     inclusions: [
       "Return flight tickets",
@@ -266,8 +266,8 @@ const INTL_PACKAGES: Package[] = [
     badge: "INTERNATIONAL",
     intl: true,
     title: "Egypt",
-    duration: "7 DAYS · 6 NIGHTS · CAIRO · NILE CRUISE",
-    price: "USD 1,780",
+    duration: "8 DAYS · 7 NIGHTS · CAIRO · NILE CRUISE",
+    price: "USD 4,290",
     img: PHOTOS.posterEgypt,
     inclusions: [
       "Return flight tickets",
@@ -829,7 +829,7 @@ const LOCAL_PACKAGES: Package[] = [
     intl: false,
     title: "Jambo Travellers Hotel",
     duration: "3 DAYS · 2 NIGHTS · MOMBASA",
-    price: "KSH 22,700 / person",
+    price: "KSH 23,700 / person",
     img: PHOTOS.pkgJambo,
     inclusions: [
       "3 days 2 nights accommodation",
@@ -868,7 +868,7 @@ const LOCAL_PACKAGES: Package[] = [
     intl: false,
     title: "Sun & Sand Beach Resort",
     duration: "3 DAYS · 2 NIGHTS · DIANI, UKUNDA",
-    price: "KSH 42,850 / person",
+    price: "KSH 42,650 / person",
     img: PHOTOS.pkgSunSand,
     inclusions: [
       "2 nights accommodation",
