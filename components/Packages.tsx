@@ -4,10 +4,10 @@
 import { useRef, useEffect, useState, useMemo } from "react";
 import { PACKAGES } from "@/lib/data";
 
-type Filter = "all" | "local" | "intl";
+type Filter = "all" | "local" | "intl" | "corporate";
 
 function parsePrice(price: string): { currency: string; num: number } | null {
-  if (/contact/i.test(price)) return null;
+  if (/contact|get quote/i.test(price)) return null;
   const currency = price.startsWith("USD") ? "USD" : "KSH";
   const match = price.match(/[\d,]+/);
   if (!match) return null;
@@ -35,8 +35,9 @@ export default function Packages() {
     PACKAGES.filter((p) => {
       const matchFilter =
         filter === "all" ||
-        (filter === "local" && !p.intl) ||
-        (filter === "intl" && p.intl);
+        (filter === "local" && !p.intl && !p.corporate) ||
+        (filter === "intl" && p.intl) ||
+        (filter === "corporate" && p.corporate);
       const q = search.toLowerCase();
       const matchSearch =
         !q ||
@@ -92,13 +93,13 @@ export default function Packages() {
 
         {/* Filter + search bar */}
         <div className="pkg-filters reveal">
-          {(["all", "local", "intl"] as Filter[]).map((f) => (
+          {(["all", "local", "intl", "corporate"] as Filter[]).map((f) => (
             <button
               key={f}
               className={`pkg-filter-btn${filter === f ? " active" : ""}`}
               onClick={() => setFilter(f)}
             >
-              {f === "all" ? "All packages" : f === "local" ? "Local · Kenya" : "International"}
+              {f === "all" ? "All packages" : f === "local" ? "Local · Kenya" : f === "intl" ? "International" : "Corporate"}
             </button>
           ))}
           <div className="pkg-search-wrap">
@@ -138,24 +139,32 @@ export default function Packages() {
               return (
                 <article className="pkg reveal" key={p.title}>
                   <div className="pkg-img" style={{ backgroundImage: `url(${p.img})` }}>
-                    <span className={`pkg-stamp${p.intl ? " intl" : ""}`}>{p.badge}</span>
+                    <span className={`pkg-stamp${p.intl ? " intl" : p.corporate ? " corporate" : ""}`}>{p.badge}</span>
                   </div>
                   <div className="pkg-body">
                     <h3 className="pkg-title">{p.title}</h3>
                     <div className="pkg-meta">{p.duration}</div>
                     <div className="pkg-foot">
                       <div className="pkg-price">
-                        <span className="from">STARTING FROM</span>
-                        {p.price}
+                        {p.corporate ? (
+                          <span className="from">CUSTOM PRICING</span>
+                        ) : (
+                          <>
+                            <span className="from">STARTING FROM</span>
+                            {p.price}
+                          </>
+                        )}
                       </div>
                       <button
-                        className="pkg-book"
+                        className={`pkg-book${p.corporate ? " pkg-book--quote" : ""}`}
                         onClick={() => {
-                          const msg = `Hi! I'd like to book the *${p.title}* package.\n\n📍 ${p.duration}\n💰 ${p.price}\n\nCould you share availability and next steps?`;
+                          const msg = p.corporate
+                            ? `Hi! We're interested in the *${p.title}* corporate package for our team.\n\n📍 ${p.duration}\n\nCould you share pricing and availability for our group?`
+                            : `Hi! I'd like to book the *${p.title}* package.\n\n📍 ${p.duration}\n💰 ${p.price}\n\nCould you share availability and next steps?`;
                           window.open(`https://wa.me/254141920923?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
                         }}
                       >
-                        Book now ↗
+                        {p.corporate ? "Get a Quote ↗" : "Book now ↗"}
                       </button>
                     </div>
 
@@ -229,13 +238,18 @@ export default function Packages() {
                 onChange={(e) => setCalcPkg(e.target.value)}
               >
                 <optgroup label="Local · Kenya">
-                  {PACKAGES.filter((p) => !p.intl).map((p) => (
+                  {PACKAGES.filter((p) => !p.intl && !p.corporate).map((p) => (
                     <option key={p.title} value={p.title}>{p.title} — {p.price}</option>
                   ))}
                 </optgroup>
                 <optgroup label="International">
                   {PACKAGES.filter((p) => p.intl).map((p) => (
                     <option key={p.title} value={p.title}>{p.title} — {p.price}</option>
+                  ))}
+                </optgroup>
+                <optgroup label="Corporate (get a custom quote)">
+                  {PACKAGES.filter((p) => p.corporate).map((p) => (
+                    <option key={p.title} value={p.title}>{p.title} — Custom pricing</option>
                   ))}
                 </optgroup>
               </select>

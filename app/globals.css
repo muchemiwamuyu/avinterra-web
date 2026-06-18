@@ -955,6 +955,10 @@ section { position: relative; padding: 120px 56px; }
   z-index: 2;
 }
 .pkg-stamp.intl { background: var(--accent); border-color: var(--accent); }
+.pkg-stamp.corporate {
+  background: var(--gold);
+  color: var(--bg);
+}
 .pkg-body { padding: 20px 22px 22px; }
 .pkg-title { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; margin: 0 0 4px; }
 .pkg-meta { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.12em; margin-bottom: 16px; }
@@ -977,6 +981,15 @@ section { position: relative; padding: 120px 56px; }
   transition: background .2s, color .2s;
 }
 .pkg-book:hover { background: var(--accent); color: white; }
+.pkg-book--quote {
+  background: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+}
+.pkg-book--quote:hover {
+  background: var(--accent);
+  color: #fff;
+}
 
 /* ---------- Package inclusions accordion ---------- */
 .pkg-details-toggle {

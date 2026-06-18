@@ -161,6 +161,7 @@ export const INTL: Destination[] = [
 export interface Package {
   badge: string;
   intl: boolean;
+  corporate?: true;
   title: string;
   duration: string;
   price: string;
@@ -475,6 +476,114 @@ const INTL_PACKAGES: Package[] = [
       "Guided city tours",
       "Museum entrance fees",
       "All transfers",
+    ],
+  },
+];
+
+const CORPORATE_PACKAGES: Package[] = [
+  {
+    badge: "CORPORATE",
+    intl: false,
+    corporate: true,
+    title: "Bush Board Retreat",
+    duration: "2–3 DAYS · MASAI MARA · LEADERSHIP OFFSITE",
+    price: "Get Quote",
+    img: PHOTOS.pkgMasaiMara,
+    inclusions: [
+      "Exclusive lodge / tented camp buyout",
+      "Conference room with projector & flip charts",
+      "Full board meals + bush breakfast",
+      "AM game drive (team debrief in the field)",
+      "Sundowner & team bonding evening",
+      "Professional MC / facilitator (optional add-on)",
+      "Transport from Nairobi",
+    ],
+  },
+  {
+    badge: "CORPORATE",
+    intl: false,
+    corporate: true,
+    title: "Coastal Executive Getaway",
+    duration: "3 DAYS · MOMBASA / DIANI · INCENTIVE TRAVEL",
+    price: "Get Quote",
+    img: PHOTOS.pkgPrideInn,
+    inclusions: [
+      "4–5 star beachfront resort",
+      "Full board or all-inclusive meal plan",
+      "Return SGR economy tickets",
+      "Welcome cocktail reception",
+      "Team water sports afternoon",
+      "Gala dinner & awards night setup",
+      "Group airport / station transfers",
+    ],
+  },
+  {
+    badge: "CORPORATE",
+    intl: false,
+    corporate: true,
+    title: "Adventure Team Build",
+    duration: "1 DAY · NAIVASHA / LONGONOT · TEAM BUILDING",
+    price: "Get Quote",
+    img: PHOTOS.pkgLongonot,
+    inclusions: [
+      "Guided hike (Mt Longonot or Hell's Gate)",
+      "Facilitator-led team challenges on trail",
+      "Group transport in luxury fleet",
+      "Packed gourmet lunch & refill water",
+      "Unlimited group photography",
+      "Post-hike debrief & reflection session",
+    ],
+  },
+  {
+    badge: "CORPORATE",
+    intl: false,
+    corporate: true,
+    title: "Wildlife CSR Safari",
+    duration: "2 DAYS · AMBOSELI · CSR + SAFARI",
+    price: "Get Quote",
+    img: PHOTOS.pkgAmboseli,
+    inclusions: [
+      "Conservation volunteer morning (Elephant Trust partnership)",
+      "Full day game drive with expert naturalist",
+      "Full board lodge accommodation",
+      "Team storytelling & CSR report material",
+      "Certificate of participation",
+      "Group transport from Nairobi",
+    ],
+  },
+  {
+    badge: "CORPORATE",
+    intl: false,
+    corporate: true,
+    title: "Annual Company Trip",
+    duration: "3–5 DAYS · CUSTOM DESTINATION · GROUP TRAVEL",
+    price: "Get Quote",
+    img: PHOTOS.pkgSaltys,
+    inclusions: [
+      "Fully bespoke itinerary (local or international)",
+      "Dedicated account manager",
+      "Group flights / SGR / charter (best rate negotiated)",
+      "Accommodation + all transfers",
+      "Branded travel kits & welcome packs",
+      "Lipa-polepole group payment plan",
+    ],
+  },
+  {
+    badge: "CORPORATE",
+    intl: false,
+    corporate: true,
+    title: "Mountain Summit Challenge",
+    duration: "1–2 DAYS · MT KENYA / ABERDARES · LEADERSHIP HIKE",
+    price: "Get Quote",
+    img: PHOTOS.pkgMtKenyaHike,
+    inclusions: [
+      "Guided summit attempt (Point Lenana or Park Gate)",
+      "Certified mountain guide per 6 pax",
+      "All park & KFS entry fees",
+      "Camping / lodge accommodation (2-day option)",
+      "Group transport in 4×4 fleet",
+      "Meals: packed trail lunch + hot camp dinner",
+      "Summit certificate for each participant",
     ],
   },
 ];
@@ -882,7 +991,7 @@ const LOCAL_PACKAGES: Package[] = [
   },
 ];
 
-export const PACKAGES: Package[] = [...INTL_PACKAGES, ...LOCAL_PACKAGES];
+export const PACKAGES: Package[] = [...INTL_PACKAGES, ...LOCAL_PACKAGES, ...CORPORATE_PACKAGES];
 
 export interface WhyItem {
   n: string;
