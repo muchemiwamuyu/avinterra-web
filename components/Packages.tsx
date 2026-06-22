@@ -26,25 +26,25 @@ const CORP_SERVICES = [
   {
     num: "01",
     title: "Corporate Team Building",
-    img: PHOTOS.pkgLongonot,
+    img: PHOTOS.corpAdventure,
     items: ["Indoor & outdoor team-building", "Problem-solving challenges", "Team strategy games", "Leadership development exercises", "Communication workshops", "Trust-building activities"],
   },
   {
     num: "02",
     title: "Employee Bonding",
-    img: PHOTOS.pkgSaltys,
+    img: PHOTOS.corpCoastal,
     items: ["Corporate retreats", "Adventure-based bonding", "Social engagement events", "Wellness & recreation programs", "Staff appreciation events"],
   },
   {
     num: "03",
     title: "Leadership Development",
-    img: PHOTOS.pkgArkLodge,
+    img: PHOTOS.corpLeadership,
     items: ["Emerging leaders training", "Executive team retreats", "Decision-making simulations", "Conflict resolution activities", "Strategic thinking exercises"],
   },
   {
     num: "04",
     title: "Events Management",
-    img: PHOTOS.pkgPrideInn,
+    img: PHOTOS.corpEvents,
     items: ["Company retreats", "Annual staff outings", "Corporate family days", "End-of-year celebrations", "Conference team engagement"],
   },
 ];
@@ -86,7 +86,7 @@ function CorporateProfile() {
   return (
     <div className="corp-profile">
       {/* Hero banner */}
-      <div className="corp-hero reveal" style={{ backgroundImage: `url(${PHOTOS.pkgMasaiMara})` }}>
+      <div className="corp-hero reveal" style={{ backgroundImage: `url(${PHOTOS.corpHero})` }}>
         <div className="corp-hero-overlay">
           <div className="eyebrow" style={{ color: "rgba(255,255,255,0.7)" }}>Corporate Solutions</div>
           <h2 style={{ color: "#fff", marginTop: 12 }}>
@@ -133,9 +133,9 @@ function CorporateProfile() {
 
       {/* Photo strip */}
       <div className="corp-photo-strip reveal">
-        <div className="corp-photo" style={{ backgroundImage: `url(${PHOTOS.pkgAmboseli})` }} />
-        <div className="corp-photo" style={{ backgroundImage: `url(${PHOTOS.pkgMtKenyaHike})` }} />
-        <div className="corp-photo" style={{ backgroundImage: `url(${PHOTOS.pkgPangoni})` }} />
+        <div className="corp-photo" style={{ backgroundImage: `url(${PHOTOS.corpStrip1})` }} />
+        <div className="corp-photo" style={{ backgroundImage: `url(${PHOTOS.corpStrip2})` }} />
+        <div className="corp-photo" style={{ backgroundImage: `url(${PHOTOS.corpBushBoard})` }} />
       </div>
 
       {/* Why Choose + Benefits */}

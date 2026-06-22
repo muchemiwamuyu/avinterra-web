@@ -62,6 +62,18 @@ export const PHOTOS = {
   pkgSouthernPalms: I("pkg-southern-palms.jpg"),
   pkgSunSand:   I("pkg-sun-sand.jpg"),
   pkgAmboseli:  I("pkg-amboseli.jpg"),
+  // Corporate tour imagery
+  corpBushBoard: I("corp-bush-board.jpg"),
+  corpCoastal:   I("corp-coastal.jpg"),
+  corpAdventure: I("corp-adventure.jpg"),
+  corpCsr:       I("corp-csr.jpg"),
+  corpAnnual:    I("corp-annual.jpg"),
+  corpSummit:    I("corp-summit.jpg"),
+  corpLeadership: I("corp-leadership.jpg"),
+  corpEvents:    I("corp-events.jpg"),
+  corpHero:      I("corp-hero.jpg"),
+  corpStrip1:    I("corp-strip-1.jpg"),
+  corpStrip2:    I("corp-strip-2.jpg"),
   gal1:         I("gal1.jpg"),
   gal2:         I("gal2.jpg"),
   gal3:         I("gal3.jpg"),
@@ -488,7 +500,7 @@ const CORPORATE_PACKAGES: Package[] = [
     title: "Bush Board Retreat",
     duration: "2–3 DAYS · MASAI MARA · LEADERSHIP OFFSITE",
     price: "Get Quote",
-    img: PHOTOS.pkgMasaiMara,
+    img: PHOTOS.corpBushBoard,
     inclusions: [
       "Exclusive lodge / tented camp buyout",
       "Conference room with projector & flip charts",
@@ -506,7 +518,7 @@ const CORPORATE_PACKAGES: Package[] = [
     title: "Coastal Executive Getaway",
     duration: "3 DAYS · MOMBASA / DIANI · INCENTIVE TRAVEL",
     price: "Get Quote",
-    img: PHOTOS.pkgPrideInn,
+    img: PHOTOS.corpCoastal,
     inclusions: [
       "4–5 star beachfront resort",
       "Full board or all-inclusive meal plan",
@@ -524,7 +536,7 @@ const CORPORATE_PACKAGES: Package[] = [
     title: "Adventure Team Build",
     duration: "1 DAY · NAIVASHA / LONGONOT · TEAM BUILDING",
     price: "Get Quote",
-    img: PHOTOS.pkgLongonot,
+    img: PHOTOS.corpAdventure,
     inclusions: [
       "Guided hike (Mt Longonot or Hell's Gate)",
       "Facilitator-led team challenges on trail",
@@ -541,7 +553,7 @@ const CORPORATE_PACKAGES: Package[] = [
     title: "Wildlife CSR Safari",
     duration: "2 DAYS · AMBOSELI · CSR + SAFARI",
     price: "Get Quote",
-    img: PHOTOS.pkgAmboseli,
+    img: PHOTOS.corpCsr,
     inclusions: [
       "Conservation volunteer morning (Elephant Trust partnership)",
       "Full day game drive with expert naturalist",
@@ -558,7 +570,7 @@ const CORPORATE_PACKAGES: Package[] = [
     title: "Annual Company Trip",
     duration: "3–5 DAYS · CUSTOM DESTINATION · GROUP TRAVEL",
     price: "Get Quote",
-    img: PHOTOS.pkgSaltys,
+    img: PHOTOS.corpAnnual,
     inclusions: [
       "Fully bespoke itinerary (local or international)",
       "Dedicated account manager",
@@ -575,7 +587,7 @@ const CORPORATE_PACKAGES: Package[] = [
     title: "Mountain Summit Challenge",
     duration: "1–2 DAYS · MT KENYA / ABERDARES · LEADERSHIP HIKE",
     price: "Get Quote",
-    img: PHOTOS.pkgMtKenyaHike,
+    img: PHOTOS.corpSummit,
     inclusions: [
       "Guided summit attempt (Point Lenana or Park Gate)",
       "Certified mountain guide per 6 pax",
