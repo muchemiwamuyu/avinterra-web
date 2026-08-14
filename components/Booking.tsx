@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { PHOTOS } from "@/lib/data";
+import { PHOTOS, MPESA_PAYBILL, MPESA_ACCOUNT } from "@/lib/data";
 
 interface FormState {
   name: string;
@@ -183,6 +183,11 @@ export default function Booking() {
                 <path d="M1 7H13M13 7L8 2M13 7L8 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
             </button>
+
+            <p className="booking-pay-note">
+              Deposits &amp; balances: M-Pesa Pay Bill{" "}
+              <strong>{MPESA_PAYBILL}</strong> · Account <strong>{MPESA_ACCOUNT}</strong>
+            </p>
 
             {status && (
               <div
