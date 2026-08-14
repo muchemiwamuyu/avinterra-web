@@ -2,16 +2,57 @@
 
 import { useState, useMemo } from "react";
 import { PACKAGES, PHOTOS, WA_NUMBER } from "@/lib/data";
+import {
+  useCurrency,
+  displayPrice,
+  parsePrice,
+  convert,
+  formatAmount,
+  type Currency,
+} from "@/lib/useCurrency";
+import WishlistButton from "@/components/WishlistButton";
 
 type Filter = "all" | "local" | "intl" | "corporate";
+type Budget = "any" | "b1" | "b2" | "b3" | "b4";
+type Length = "any" | "day" | "short" | "long";
+type Sort = "featured" | "price-asc" | "price-desc" | "duration";
 
-function parsePrice(price: string): { currency: string; num: number } | null {
-  if (/contact|get quote/i.test(price)) return null;
-  const currency = price.startsWith("USD") ? "USD" : "KSH";
-  const match = price.match(/[\d,]+/);
-  if (!match) return null;
-  const num = parseInt(match[0].replace(/,/g, ""), 10);
-  return isNaN(num) ? null : { currency, num };
+// Budget bucket edges per currency, so the labels stay round numbers in both
+const BUDGET_EDGES: Record<Currency, [number, number, number]> = {
+  KSH: [10_000, 30_000, 60_000],
+  USD: [100, 250, 500],
+};
+
+const LENGTHS: { key: Length; label: string }[] = [
+  { key: "any", label: "Any length" },
+  { key: "day", label: "Day trips" },
+  { key: "short", label: "2–4 days" },
+  { key: "long", label: "5+ days" },
+];
+
+const SORTS: { key: Sort; label: string }[] = [
+  { key: "featured", label: "Featured" },
+  { key: "price-asc", label: "Price: low to high" },
+  { key: "price-desc", label: "Price: high to low" },
+  { key: "duration", label: "Trip length" },
+];
+
+/** Days extracted from an authored duration string like "3 DAYS · 2 NIGHTS · SAFARI". */
+function parseDays(duration: string): number | null {
+  const m = duration.match(/(\d+)\s*DAYS?/i);
+  return m ? parseInt(m[1], 10) : null;
+}
+
+function budgetLabel(key: Budget, currency: Currency): string {
+  const [a, b, c] = BUDGET_EDGES[currency];
+  const f = (n: number) => formatAmount(n, currency);
+  switch (key) {
+    case "b1": return `Under ${f(a)}`;
+    case "b2": return `${f(a)} – ${f(b)}`;
+    case "b3": return `${f(b)} – ${f(c)}`;
+    case "b4": return `${f(c)}+`;
+    default:   return "Any budget";
+  }
 }
 
 function CheckIcon({ color }: { color: string }) {
@@ -193,8 +234,12 @@ export default function Packages() {
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<Filter>("all");
   const [search, setSearch] = useState("");
+  const [budget, setBudget] = useState<Budget>("any");
+  const [length, setLength] = useState<Length>("any");
+  const [sort, setSort] = useState<Sort>("featured");
   const [calcPkg, setCalcPkg] = useState(PACKAGES[0].title);
   const [travelers, setTravelers] = useState(2);
+  const currency = useCurrency();
 
   const toggle = (title: string) =>
     setOpenCards((prev) => {
@@ -204,8 +249,10 @@ export default function Packages() {
       return next;
     });
 
-  const filtered = useMemo(() =>
-    PACKAGES.filter((p) => {
+  const filtered = useMemo(() => {
+    const [e1, e2, e3] = BUDGET_EDGES[currency];
+
+    const matches = PACKAGES.filter((p) => {
       const matchFilter =
         filter === "all" ||
         (filter === "local" && !p.intl && !p.corporate) ||
@@ -217,20 +264,66 @@ export default function Packages() {
         p.title.toLowerCase().includes(q) ||
         p.duration.toLowerCase().includes(q) ||
         p.badge.toLowerCase().includes(q);
-      return matchFilter && matchSearch;
-    }), [filter, search]);
+
+      // Budget compares in the reader's currency; quote-only packages are shown under "Any budget"
+      let matchBudget = true;
+      if (budget !== "any") {
+        const parsed = parsePrice(p.price);
+        if (!parsed) matchBudget = false;
+        else {
+          const v = convert(parsed.num, parsed.currency, currency);
+          matchBudget =
+            budget === "b1" ? v < e1 :
+            budget === "b2" ? v >= e1 && v < e2 :
+            budget === "b3" ? v >= e2 && v < e3 :
+            v >= e3;
+        }
+      }
+
+      let matchLength = true;
+      if (length !== "any") {
+        const d = parseDays(p.duration);
+        if (d === null) matchLength = false;
+        else matchLength = length === "day" ? d <= 1 : length === "short" ? d >= 2 && d <= 4 : d >= 5;
+      }
+
+      return matchFilter && matchSearch && matchBudget && matchLength;
+    });
+
+    if (sort === "featured") return matches;
+
+    const priceIn = (price: string): number | null => {
+      const parsed = parsePrice(price);
+      return parsed ? convert(parsed.num, parsed.currency, currency) : null;
+    };
+
+    // Quote-only packages have no comparable value — always park them at the end
+    return [...matches].sort((a, b) => {
+      if (sort === "duration") {
+        const da = parseDays(a.duration), db = parseDays(b.duration);
+        if (da === null) return db === null ? 0 : 1;
+        if (db === null) return -1;
+        return da - db;
+      }
+      const pa = priceIn(a.price), pb = priceIn(b.price);
+      if (pa === null) return pb === null ? 0 : 1;
+      if (pb === null) return -1;
+      return sort === "price-asc" ? pa - pb : pb - pa;
+    });
+  }, [filter, search, budget, length, sort, currency]);
 
 
   const selectedPkg = PACKAGES.find((p) => p.title === calcPkg) ?? PACKAGES[0];
   const parsed = parsePrice(selectedPkg.price);
   const safeT = Math.max(1, Math.min(50, travelers));
-  const total = parsed ? parsed.num * safeT : null;
-  const totalStr = total
-    ? `${parsed!.currency} ${total.toLocaleString()}`
+  const perPerson = parsed ? convert(parsed.num, parsed.currency, currency) : null;
+  const total = perPerson !== null ? perPerson * safeT : null;
+  const totalStr = total !== null
+    ? formatAmount(total, currency)
     : "Contact us for pricing";
 
-  const calcWaMsg = total
-    ? `Hi! I'd like a quote for *${selectedPkg.title}* for ${safeT} traveller${safeT > 1 ? "s" : ""}.\n\n📍 ${selectedPkg.duration}\n💰 Estimated total: ${totalStr} (${parsed!.currency} ${parsed!.num.toLocaleString()} × ${safeT})\n\nCould you confirm availability and final pricing?`
+  const calcWaMsg = total !== null
+    ? `Hi! I'd like a quote for *${selectedPkg.title}* for ${safeT} traveller${safeT > 1 ? "s" : ""}.\n\n📍 ${selectedPkg.duration}\n💰 Estimated total: ${totalStr} (${formatAmount(perPerson!, currency)} × ${safeT})\n\nCould you confirm availability and final pricing?`
     : `Hi! I'm interested in the *${selectedPkg.title}* package for ${safeT} traveller${safeT > 1 ? "s" : ""}.\n\n📍 ${selectedPkg.duration}\n\nCould you share pricing and availability?`;
 
   const isCorporate = filter === "corporate";
@@ -284,6 +377,66 @@ export default function Packages() {
           )}
         </div>
 
+        {/* Refine bar — budget, trip length, sort */}
+        {!isCorporate && (
+          <div className="pkg-refine reveal">
+            <div className="pkg-refine-group">
+              <span className="pkg-refine-label">Budget</span>
+              <div className="pkg-chips">
+                {(["any", "b1", "b2", "b3", "b4"] as Budget[]).map((b) => (
+                  <button
+                    key={b}
+                    className={`pkg-chip${budget === b ? " active" : ""}`}
+                    onClick={() => setBudget(b)}
+                    aria-pressed={budget === b}
+                  >
+                    {budgetLabel(b, currency)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pkg-refine-group">
+              <span className="pkg-refine-label">Length</span>
+              <div className="pkg-chips">
+                {LENGTHS.map(({ key, label }) => (
+                  <button
+                    key={key}
+                    className={`pkg-chip${length === key ? " active" : ""}`}
+                    onClick={() => setLength(key)}
+                    aria-pressed={length === key}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pkg-refine-group pkg-refine-sort">
+              <label className="pkg-refine-label" htmlFor="pkg-sort">Sort</label>
+              <select
+                id="pkg-sort"
+                className="pkg-sort-select"
+                value={sort}
+                onChange={(e) => setSort(e.target.value as Sort)}
+              >
+                {SORTS.map(({ key, label }) => (
+                  <option key={key} value={key}>{label}</option>
+                ))}
+              </select>
+            </div>
+
+            {(budget !== "any" || length !== "any" || sort !== "featured" || search) && (
+              <button
+                className="pkg-reset"
+                onClick={() => { setBudget("any"); setLength("any"); setSort("featured"); setSearch(""); }}
+              >
+                Reset
+              </button>
+            )}
+          </div>
+        )}
+
         {isCorporate ? (
           <CorporateProfile />
         ) : (
@@ -295,9 +448,16 @@ export default function Packages() {
                     <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5" />
                     <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
-                  <p>No packages match &ldquo;{search}&rdquo;.</p>
-                  <button className="pkg-filter-btn" onClick={() => { setSearch(""); setFilter("all"); }}>
-                    Clear search
+                  <p>
+                    {search
+                      ? `No packages match “${search}” with these filters.`
+                      : "No packages match these filters."}
+                  </p>
+                  <button
+                    className="pkg-filter-btn"
+                    onClick={() => { setSearch(""); setFilter("all"); setBudget("any"); setLength("any"); }}
+                  >
+                    Clear filters
                   </button>
                 </div>
               ) : (
@@ -307,6 +467,12 @@ export default function Packages() {
                     <article className="pkg reveal" key={p.title}>
                       <div className="pkg-img" style={{ backgroundImage: `url(${p.img})` }}>
                         <span className={`pkg-stamp${p.intl ? " intl" : p.corporate ? " corporate" : ""}`}>{p.badge}</span>
+                        {!p.corporate && (
+                          <WishlistButton
+                            className="wish-btn--card"
+                            item={{ title: p.title, meta: p.duration, price: p.price, img: p.img }}
+                          />
+                        )}
                       </div>
                       <div className="pkg-body">
                         <h3 className="pkg-title">{p.title}</h3>
@@ -318,7 +484,7 @@ export default function Packages() {
                             ) : (
                               <>
                                 <span className="from">STARTING FROM</span>
-                                {p.price}
+                                {displayPrice(p.price, currency)}
                               </>
                             )}
                           </div>
@@ -406,12 +572,12 @@ export default function Packages() {
                   >
                     <optgroup label="Local · Kenya">
                       {PACKAGES.filter((p) => !p.intl && !p.corporate).map((p) => (
-                        <option key={p.title} value={p.title}>{p.title} — {p.price}</option>
+                        <option key={p.title} value={p.title}>{p.title} — {displayPrice(p.price, currency)}</option>
                       ))}
                     </optgroup>
                     <optgroup label="International">
                       {PACKAGES.filter((p) => p.intl).map((p) => (
-                        <option key={p.title} value={p.title}>{p.title} — {p.price}</option>
+                        <option key={p.title} value={p.title}>{p.title} — {displayPrice(p.price, currency)}</option>
                       ))}
                     </optgroup>
                     <optgroup label="Corporate (custom quote)">
@@ -436,13 +602,13 @@ export default function Packages() {
                 <div>
                   <div className="calc-result-label">Estimated total</div>
                   <div className="calc-result">{totalStr}</div>
-                  {parsed && (
+                  {perPerson !== null && (
                     <div className="calc-note">
-                      {parsed.currency} {parsed.num.toLocaleString()} × {safeT} traveller{safeT > 1 ? "s" : ""}
+                      {formatAmount(perPerson, currency)} × {safeT} traveller{safeT > 1 ? "s" : ""}
                       {" · "}prices may vary — contact us for final quote
                     </div>
                   )}
-                  {!parsed && (
+                  {perPerson === null && (
                     <div className="calc-note">Pricing varies — message us for a custom quote</div>
                   )}
                 </div>

@@ -3,6 +3,7 @@
 import { useSyncExternalStore, useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCurrency, setCurrency, type Currency } from "@/lib/useCurrency";
 
 const NAV_ITEMS: [string, string][] = [
   ["Home", "/"],
@@ -24,6 +25,27 @@ function getThemeSnapshot(): Theme {
   return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
 }
 function getServerThemeSnapshot(): Theme { return "dark"; }
+
+const CURRENCIES: Currency[] = ["KSH", "USD"];
+
+function CurrencyToggle({ className }: { className?: string }) {
+  const currency = useCurrency();
+  return (
+    <div className={`cur-toggle${className ? ` ${className}` : ""}`} role="group" aria-label="Display currency">
+      {CURRENCIES.map((c) => (
+        <button
+          key={c}
+          type="button"
+          className={`cur-opt${currency === c ? " active" : ""}`}
+          onClick={() => setCurrency(c)}
+          aria-pressed={currency === c}
+        >
+          {c}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export default function Nav() {
   const pathname = usePathname();
@@ -72,6 +94,7 @@ export default function Nav() {
 
           {/* Right controls */}
           <div className="nav-right">
+            <CurrencyToggle className="cur-toggle--nav" />
             <button
               className="theme-toggle"
               onClick={toggleTheme}
@@ -127,6 +150,10 @@ export default function Nav() {
               </svg>
             </Link>
           ))}
+          <div className="nav-mobile-cur">
+            <span>Show prices in</span>
+            <CurrencyToggle />
+          </div>
           <Link href="/contact" className="nav-mobile-cta" onClick={() => setMenuOpen(false)}>
             Book a tour ↗
           </Link>

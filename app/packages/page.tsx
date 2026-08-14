@@ -6,6 +6,7 @@ import RevealObserver from "@/components/RevealObserver";
 import PageShell from "@/components/PageShell";
 import Packages from "@/components/Packages";
 import CtaStrip from "@/components/CtaStrip";
+import Payment from "@/components/Payment";
 
 export const metadata: Metadata = {
   title: "Packages — Avinterra Expeditions",
@@ -20,6 +21,7 @@ export default function PackagesPage() {
       <Nav />
       <PageShell>
         <Packages />
+        <Payment />
         <CtaStrip />
       </PageShell>
       <Footer />

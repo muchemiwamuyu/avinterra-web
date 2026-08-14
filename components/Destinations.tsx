@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { LOCAL, INTL, type Destination } from "@/lib/data";
+import { useCurrency, displayPrice } from "@/lib/useCurrency";
+import WishlistButton from "@/components/WishlistButton";
 
 function DestCard({ d, tab, tall }: { d: Destination; tab: string; tall: boolean }) {
   const [type, duration] = d.meta.split(" · ");
+  const currency = useCurrency();
 
   const openWhatsApp = () => {
     const msg = `Hi! I'm interested in the *${d.name}* package (${d.meta} · ${d.price}). Could you share more details and availability?`;
@@ -23,8 +26,12 @@ function DestCard({ d, tab, tall }: { d: Destination; tab: string; tall: boolean
     >
       <div className="cat-card-price">
         <span className="from">FROM</span>
-        {d.price}
+        {displayPrice(d.price, currency)}
       </div>
+      <WishlistButton
+        className="wish-btn--card wish-btn--dest"
+        item={{ title: d.name, meta: d.meta, price: d.price, img: d.img }}
+      />
       <div className="cat-card-arrow">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />

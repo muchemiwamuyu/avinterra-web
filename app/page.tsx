@@ -5,6 +5,7 @@ import About from "@/components/About";
 import StatsInfographic from "@/components/StatsInfographic";
 import DestinationsGlobe from "@/components/DestinationsGlobe";
 import Marquee from "@/components/Marquee";
+import KenyaMap from "@/components/KenyaMap";
 import Why from "@/components/Why";
 import Testimonials from "@/components/Testimonials";
 import CtaStrip from "@/components/CtaStrip";
@@ -23,6 +24,7 @@ export default function Home() {
         <About />
         <StatsInfographic />
         <DestinationsGlobe />
+        <KenyaMap />
         <Marquee />
         <Why />
         <Testimonials />

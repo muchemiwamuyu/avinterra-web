@@ -32,6 +32,7 @@ const SECTIONS: LegalSection[] = [
     paragraphs: [
       "A non-refundable deposit of 30% of the total booking value is required to secure your booking and date.",
       "The deposit is payable upon confirmation of the itinerary and is non-refundable under all cancellation scenarios.",
+      "Deposits and balances are paid via M-Pesa Lipa na M-Pesa (Pay Bill): Paybill No. 880100, Account No. 894097. Please send the M-Pesa confirmation message to us on WhatsApp so we can match the payment to your booking.",
     ],
   },
   {

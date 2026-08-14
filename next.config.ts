@@ -1,33 +1,24 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    formats: ["image/avif", "image/webp"],
+  // Fully static export → out/, served by nginx (see Dockerfile).
+  output: "export",
+
+  // Pin the workspace root to this project. Without it Next walks up looking for
+  // a lockfile, finds a stray one in the home directory, and Turbopack ends up
+  // watching every file under it.
+  turbopack: {
+    root: __dirname,
   },
 
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options",            value: "nosniff" },
-          { key: "X-Frame-Options",                   value: "DENY" },
-          { key: "X-XSS-Protection",                  value: "1; mode=block" },
-          { key: "Referrer-Policy",                   value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy",                value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-      {
-        // Local images — long-lived immutable cache
-        source: "/images/(.*)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
-      // /_next/static/ cache handled by nginx in production — omit here so dev
-      // mode browsers always fetch fresh JS chunks after a server restart.
-    ];
+  // No server at runtime, so there is nothing to optimise images on the fly.
+  images: {
+    unoptimized: true,
   },
+
+  // NOTE: headers()/redirects()/rewrites() do nothing under output: "export" —
+  // there is no server to run them. Security and cache headers live in
+  // nginx.conf, which is what actually serves the site in production.
 };
 
 export default nextConfig;

@@ -10,6 +10,14 @@ export const WA_DISPLAY = "+254 141 920923";
 export const BOOKING_PHONE = "+254 143 218 102";
 export const BOOKING_PHONE_TEL = "+254143218102";
 
+// M-Pesa payment details
+export const MPESA_PAYBILL = "880100";
+export const MPESA_ACCOUNT = "894097";
+
+// Indicative conversion rate used by the site-wide currency toggle.
+// Displayed prices are always approximate — update this when rates move.
+export const USD_TO_KSH = 129;
+
 export const PHOTOS = {
   balloons:     I("balloons.jpg"),
   safari:       I("safari.jpg"),

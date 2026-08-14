@@ -6,6 +6,7 @@ import RevealObserver from "@/components/RevealObserver";
 import PageShell from "@/components/PageShell";
 import Contact from "@/components/Contact";
 import Booking from "@/components/Booking";
+import Payment from "@/components/Payment";
 
 export const metadata: Metadata = {
   title: "Contact & Booking — Avinterra Expeditions",
@@ -21,6 +22,7 @@ export default function ContactPage() {
       <PageShell>
         <Contact />
         <Booking />
+        <Payment />
       </PageShell>
       <Footer />
       <WhatsAppButton />

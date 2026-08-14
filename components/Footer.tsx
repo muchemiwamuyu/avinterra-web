@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { MPESA_PAYBILL, MPESA_ACCOUNT } from "@/lib/data";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -97,7 +98,12 @@ export default function Footer() {
         </div>
 
         <div className="foot-bottom">
-          <div>© 2026 Avinterra Expeditions Limited · Nairobi, Kenya</div>
+          <div>
+            © 2026 Avinterra Expeditions Limited · Nairobi, Kenya
+            <span className="foot-pay">
+              M-Pesa Paybill <strong>{MPESA_PAYBILL}</strong> · Acc <strong>{MPESA_ACCOUNT}</strong>
+            </span>
+          </div>
           <div className="foot-socials">
             <a href="https://wa.me/254141920923" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
