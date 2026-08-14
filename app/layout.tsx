@@ -3,6 +3,7 @@ import { Fraunces, Geist, JetBrains_Mono } from "next/font/google";
 import Script from "next/script"; // 1. Import the Next.js Script component
 import "./globals.css";
 import BackToTop from "@/components/BackToTop";
+import WishlistTray from "@/components/WishlistTray";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body>
         <Script id="theme-initializer" strategy="beforeInteractive" src="/theme-init.js" />
         {children}
+        <WishlistTray />
         <BackToTop />
       </body>
     </html>

@@ -2726,3 +2726,303 @@ footer.foot { padding: 80px 56px 40px; background: var(--bg-1); border-top: 1px 
 .foot-pay strong { color: var(--ink-2); font-weight: 400; }
 .booking-pay-note { margin: 14px 0 0; font-size: 12px; color: var(--ink-3); line-height: 1.6; }
 .booking-pay-note strong { font-family: var(--mono); color: var(--ink-2); font-weight: 400; letter-spacing: 0.04em; }
+
+/* ============================================================
+   CURRENCY TOGGLE
+   ============================================================ */
+.cur-toggle {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  gap: 2px;
+}
+.cur-opt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--ink-3);
+  background: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.cur-opt:hover { color: var(--ink); }
+.cur-opt.active { background: var(--accent); color: #fff; }
+.nav-mobile-cur {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-top: 8px;
+  font-size: 14px; color: var(--ink-3);
+}
+@media (max-width: 900px) { .cur-toggle--nav { display: none; } }
+@media (min-width: 901px) { .nav-mobile-cur { display: none; } }
+
+/* ============================================================
+   PACKAGE REFINE BAR
+   ============================================================ */
+.pkg-refine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  padding: 18px 0 4px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.pkg-refine-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.pkg-refine-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--ink-3); text-transform: uppercase;
+}
+.pkg-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.pkg-chip {
+  font-size: 12px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.pkg-chip:hover { color: var(--ink); border-color: var(--ink-3); }
+.pkg-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pkg-sort-select {
+  font-size: 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  outline: none;
+}
+.pkg-sort-select:focus-visible { border-color: var(--accent); }
+.pkg-sort-select option { background: var(--bg-1); color: var(--ink); }
+.pkg-reset {
+  font-size: 12px; color: var(--accent); background: none;
+  cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+  margin-left: auto;
+}
+@media (max-width: 640px) {
+  .pkg-refine { gap: 14px; flex-direction: column; align-items: flex-start; }
+  .pkg-refine-group { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .pkg-reset { margin-left: 0; }
+}
+
+/* ============================================================
+   WISHLIST
+   ============================================================ */
+.wish-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: rgba(10,10,10,0.55);
+  color: var(--ink-2);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: color .2s, border-color .2s, transform .2s, background .2s;
+}
+.wish-btn:hover { color: var(--accent); border-color: var(--accent); transform: scale(1.08); }
+.wish-btn.saved { color: var(--accent); border-color: var(--accent); }
+.wish-btn--card { position: absolute; top: 14px; right: 14px; z-index: 3; }
+.wish-btn--dest { top: auto; bottom: 16px; right: 16px; }
+[data-theme="light"] .wish-btn { background: rgba(255,255,255,0.75); }
+
+.wish-fab {
+  position: fixed;
+  right: 92px;
+  bottom: 24px;
+  z-index: 60;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 40px rgba(232,92,43,0.42);
+  cursor: pointer;
+  transition: transform .2s;
+}
+.wish-fab:hover { transform: scale(1.06); }
+.wish-fab-count {
+  position: absolute;
+  top: -4px; right: -4px;
+  min-width: 21px; height: 21px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--accent);
+  font-family: var(--mono); font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+}
+.wish-scrim {
+  position: fixed; inset: 0; z-index: 70;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+}
+.wish-panel {
+  position: fixed;
+  right: 0; top: 0; bottom: 0;
+  width: min(400px, 92vw);
+  z-index: 80;
+  background: var(--bg-1);
+  border-left: 1px solid var(--line-2);
+  display: flex; flex-direction: column;
+  transform: translateX(102%);
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+  visibility: hidden;
+}
+.wish-panel.open { transform: translateX(0); visibility: visible; }
+.wish-panel-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; padding: 26px 24px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.wish-panel-head h4 { font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 6px 0 0; }
+.wish-close {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--line-2); background: none; color: var(--ink-2);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+}
+.wish-close:hover { color: var(--ink); border-color: var(--ink-3); }
+.wish-list { list-style: none; margin: 0; padding: 12px 0; overflow-y: auto; flex: 1; }
+.wish-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 24px;
+}
+.wish-thumb {
+  width: 54px; height: 54px; border-radius: 10px; flex-shrink: 0;
+  background-size: cover; background-position: center;
+  border: 1px solid var(--line-2);
+}
+.wish-row-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+.wish-row-title { font-size: 14px; color: var(--ink); }
+.wish-row-meta {
+  font-size: 11px; color: var(--ink-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.wish-row-price { font-family: var(--mono); font-size: 12px; color: var(--accent-2); }
+.wish-remove {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: none; border: 1px solid transparent; color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+}
+.wish-remove:hover { color: var(--accent); border-color: var(--line-2); }
+.wish-foot { padding: 20px 24px 26px; border-top: 1px solid var(--line); }
+.wish-total {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; margin-bottom: 6px;
+  font-size: 12px; color: var(--ink-3);
+}
+.wish-total strong { font-family: var(--mono); font-size: 18px; color: var(--ink); font-weight: 400; }
+.wish-quote-note { font-size: 11px; color: var(--ink-3); margin: 0 0 14px; }
+.wish-send {
+  display: block; text-align: center;
+  margin-top: 14px; padding: 14px 20px;
+  border-radius: 999px;
+  background: var(--accent); color: #fff;
+  font-size: 14px; text-decoration: none;
+  transition: opacity .2s;
+}
+.wish-send:hover { opacity: 0.88; }
+.wish-clear {
+  display: block; width: 100%;
+  margin-top: 10px; padding: 6px;
+  background: none; color: var(--ink-3); font-size: 12px; cursor: pointer;
+}
+.wish-clear:hover { color: var(--accent); }
+@media (max-width: 640px) {
+  .wish-fab { right: 88px; width: 50px; height: 50px; }
+}
+
+/* ============================================================
+   KENYA MAP
+   ============================================================ */
+.kmap { padding: 80px 56px; border-top: 1px solid var(--line); }
+.kmap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.kmap-stage {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  background: var(--bg-1);
+}
+.kmap-svg { width: 100%; height: auto; display: block; color: var(--ink-3); }
+.kmap-equator {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.2em;
+  fill: currentColor; opacity: 0.45;
+}
+.kmap-pin { cursor: pointer; outline: none; }
+.kmap-pin-halo { fill: var(--accent); opacity: 0; transition: opacity .2s, r .2s; }
+.kmap-pin-dot {
+  fill: var(--bg); stroke: var(--accent); stroke-width: 2;
+  transition: fill .2s, r .2s;
+}
+.kmap-pin-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em;
+  fill: var(--ink-3); transition: fill .2s;
+  pointer-events: none;
+}
+.kmap-pin:hover .kmap-pin-halo,
+.kmap-pin:focus-visible .kmap-pin-halo,
+.kmap-pin.active .kmap-pin-halo { opacity: 0.22; }
+.kmap-pin:hover .kmap-pin-dot,
+.kmap-pin:focus-visible .kmap-pin-dot,
+.kmap-pin.active .kmap-pin-dot { fill: var(--accent); }
+.kmap-pin:hover .kmap-pin-label,
+.kmap-pin:focus-visible .kmap-pin-label,
+.kmap-pin.active .kmap-pin-label { fill: var(--ink); }
+
+.kmap-detail-name {
+  font-family: var(--serif); font-size: clamp(26px, 3vw, 34px);
+  font-weight: 300; letter-spacing: -0.02em; line-height: 1.1;
+}
+.kmap-detail-blurb { font-size: 14px; color: var(--ink-2); margin: 10px 0 24px; max-width: 46ch; }
+.kmap-trips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.kmap-trip {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition: background .2s, border-color .2s;
+}
+.kmap-trip:hover { background: rgba(232,92,43,0.05); border-color: var(--line-2); }
+.kmap-trip-thumb {
+  width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0;
+  background-size: cover; background-position: center;
+}
+.kmap-trip-body { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.kmap-trip-name { font-size: 15px; color: var(--ink); }
+.kmap-trip-meta { font-size: 11px; color: var(--ink-3); }
+.kmap-trip-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+.kmap-trip-price { font-family: var(--mono); font-size: 13px; color: var(--accent-2); white-space: nowrap; }
+.kmap-trip-actions { display: flex; align-items: center; gap: 8px; }
+.kmap-trip-book {
+  font-size: 12px; padding: 7px 14px;
+  border-radius: 999px; border: 1px solid var(--line-2);
+  color: var(--ink-2); text-decoration: none; white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.kmap-trip-book:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.kmap-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 26px; }
+.kmap-chip {
+  font-size: 11px; padding: 6px 12px;
+  border-radius: 999px; border: 1px solid var(--line-2);
+  color: var(--ink-3); background: none; cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.kmap-chip:hover { color: var(--ink); border-color: var(--ink-3); }
+.kmap-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+@media (max-width: 1024px) {
+  .kmap      { padding-left: 32px; padding-right: 32px; }
+  .kmap-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 640px) {
+  .kmap             { padding: 80px 24px; }
+  .kmap-pin-label   { display: none; }
+  .kmap-trip-right  { align-items: flex-end; }
+}

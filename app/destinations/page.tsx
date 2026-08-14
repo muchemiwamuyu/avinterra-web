@@ -6,6 +6,7 @@ import RevealObserver from "@/components/RevealObserver";
 import PageShell from "@/components/PageShell";
 import Destinations from "@/components/Destinations";
 import CtaStrip from "@/components/CtaStrip";
+import KenyaMap from "@/components/KenyaMap";
 
 export const metadata: Metadata = {
   title: "Destinations — Avinterra Expeditions",
@@ -20,6 +21,7 @@ export default function DestinationsPage() {
       <Nav />
       <PageShell>
         <Destinations />
+        <KenyaMap />
         <CtaStrip />
       </PageShell>
       <Footer />
