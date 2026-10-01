@@ -2442,6 +2442,7 @@ footer.foot { padding: 80px 56px 40px; background: var(--bg-1); border-top: 1px 
   z-index: 201;
 }
 .lb-nav:hover { background: rgba(255,255,255,0.22); }
+.poster-lb-img { max-height: 78vh; }
 .lb-prev { left: 20px; }
 .lb-next { right: 20px; }
 .lb-meta {

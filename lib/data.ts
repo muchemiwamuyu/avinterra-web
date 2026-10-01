@@ -126,6 +126,14 @@ export const PHOTOS = {
 /** @deprecated kept for any remaining direct callers — prefer PHOTOS keys */
 export const img = (): string => "";
 
+const POSTER_SRCS = new Set(
+  Object.entries(PHOTOS)
+    .filter(([k]) => /^(poster|cityPoster)/.test(k))
+    .map(([, v]) => v),
+);
+/** True when the image is a full travel poster (tall layout with inclusions and contacts). */
+export const isPoster = (src: string) => POSTER_SRCS.has(src);
+
 export interface Destination {
   name: string;
   meta: string;
@@ -1040,15 +1048,15 @@ export interface Testimonial {
 export const TESTIMONIALS: Testimonial[] = [
   {
     q: "Avinterra planned our Mara trip top-to-bottom. The guide knew where the cats were, the lodge was spotless, and the price was exactly what they quoted. We're booking Greece next.",
-    n: "Wanjiku M.", role: "MAASAI MARA · 2025", av: PHOTOS.avA, s: 5,
+    n: "Sophie M.", role: "MAASAI MARA · 2025", av: PHOTOS.avA, s: 5,
   },
   {
     q: "Our Japan honeymoon felt completely bespoke. Train tickets, ryokan, the lot — they sorted the visa and we just packed. Easily the smoothest international trip I've taken.",
-    n: "James & Lina O.", role: "JAPAN · 2025", av: PHOTOS.avB, s: 5,
+    n: "James O.", role: "JAPAN · 2025", av: PHOTOS.avB, s: 5,
   },
   {
     q: "Booked the Salty's on the Creek weekend with twelve friends. Lipa-polepole made it painless and the dhow ride at sunset — I have no words. Just go.",
-    n: "Brian K.", role: "KILIFI · 2024", av: PHOTOS.avC, s: 5,
+    n: "Emma K.", role: "KILIFI · 2024", av: PHOTOS.avC, s: 5,
   },
 ];
 

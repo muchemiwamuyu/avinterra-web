@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PHOTOS } from "@/lib/data";
 import { ElephantIcon, GiraffeIcon, BirdFlock } from "@/components/AnimalIcons";
 
-const HERO_BG = [PHOTOS.safari, PHOTOS.mara, PHOTOS.pkgMasaiMara, PHOTOS.fuji];
+const HERO_BG = [PHOTOS.safari, PHOTOS.mara, PHOTOS.amboseli, PHOTOS.fuji];
 
 const CARDS = [
   { cls: "card-a", img: PHOTOS.balloons,    meta: "CAPPADOCIA",       title: "Dawn over Göreme" },
@@ -136,7 +136,7 @@ export default function Hero() {
       {/* Signature Journeys strip */}
       <div className="hero-journeys">
         {[
-          { img: PHOTOS.pkgMasaiMara, country: "KE", tag: "3 DAYS · SAFARI",  label: "Maasai Mara",   price: "from KSH 18,500" },
+          { img: PHOTOS.mara, country: "KE", tag: "3 DAYS · SAFARI",  label: "Maasai Mara",   price: "from KSH 18,500" },
           { img: PHOTOS.beach,  country: "KE", tag: "4 DAYS · COAST",      label: "Diani Beach",   price: "from KSH 24,900" },
           { img: PHOTOS.greece, country: "GR", tag: "8 DAYS · ISLANDS",    label: "Greek Islands", price: "from USD 2,269"  },
           { img: PHOTOS.fuji,   country: "JP", tag: "10 DAYS · CULTURE",   label: "Japan",         price: "from USD 3,150"  },

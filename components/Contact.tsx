@@ -21,9 +21,9 @@ const CELLS: ContactCell[] = [
   },
   {
     label: "EMAIL",
-    value: "avinterraexpeditions@gmail.com",
+    value: "avinterraexpeditionsltd@gmail.com",
     sub: "Replies within 24h",
-    href: "mailto:avinterraexpeditions@gmail.com",
+    href: "mailto:avinterraexpeditionsltd@gmail.com",
     small: true,
   },
   {
