@@ -93,7 +93,7 @@ const SECTIONS: LegalSection[] = [
     ],
     trailing: [
       "Requests must be submitted through official company communication channels.",
-      "Email: avinterraexpeditions@gmail.com",
+      "Email: avinterraexpeditionsltd@gmail.com",
     ],
   },
 ];

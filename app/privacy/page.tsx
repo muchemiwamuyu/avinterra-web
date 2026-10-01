@@ -85,7 +85,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: "10. Contact",
     paragraphs: [
-      "For privacy-related enquiries, contact us at avinterraexpeditions@gmail.com.",
+      "For privacy-related enquiries, contact us at avinterraexpeditionsltd@gmail.com.",
     ],
   },
 ];
